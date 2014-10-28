@@ -25,7 +25,7 @@
         		<h2 class="form-signin-heading">Faça seu login</h2>
         		<input type="text" class="form-control" placeholder="Login" required autofocus>
         		<input type="password" class="form-control" placeholder="Senha" required>
-        		<button class="btn btn-lg btn-primary btn-block" type="submit">Acessar</button>
+        		<button class="btn btn-lg btn-success btn-block" type="submit">Acessar</button>
       		</form>
 
     	</div>

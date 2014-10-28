@@ -1,0 +1,8 @@
+.formHeader {
+	border-bottom: 1px solid #eee;
+	margin: 30px 0px 30px 0px;
+}
+
+input[type="radio"] {
+	margin-left: 5px !important;
+}

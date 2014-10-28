@@ -1,12 +1,16 @@
 package sisgo.model;
 
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="paciente")
 public class Paciente extends Pessoa {
 
+	@ManyToOne
+	@JoinColumn(name="estado_civil_id")
 	private EstadoCivil estadoCivil;
 	private String profissao;
 	private String obs;
