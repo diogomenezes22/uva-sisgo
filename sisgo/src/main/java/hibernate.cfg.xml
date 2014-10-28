@@ -12,8 +12,21 @@
 		<property name="connection.username">sisgo</property>
 		<property name="connection.password">123456</property>
 
-		<property name="hibernate.show_sql">false</property>
+		<property name="hibernate.show_sql">true</property>
 		<property name="hibernate.format_sql">true</property>
+	
+		<mapping class="sisgo.model.Anamnese" />
+		<mapping class="sisgo.model.Consulta" />
+		<mapping class="sisgo.model.Dentista" />
+		<mapping class="sisgo.model.EstadoCivil" />
+		<mapping class="sisgo.model.Funcionario" />
+		<mapping class="sisgo.model.Paciente" />
+		<mapping class="sisgo.model.Pessoa" />
+		<mapping class="sisgo.model.PlanoTratamento" />
+		<mapping class="sisgo.model.Procedimento" />
+		<mapping class="sisgo.model.ProcedimentoConsulta" />
+		<mapping class="sisgo.model.Tratamento" />
+		<mapping class="sisgo.model.Usuario" />	
 	
 	</session-factory>
 
