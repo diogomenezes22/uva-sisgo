@@ -13,3 +13,10 @@ body {
 	line-height: 22px;
 	color: #FFF !important;	
 } 
+
+.mensagemSucesso {
+	color: #0C0;
+	font-weight: bold;
+	width: 100%;
+	text-align: center;
+}

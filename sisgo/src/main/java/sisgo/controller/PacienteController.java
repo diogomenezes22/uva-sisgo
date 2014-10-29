@@ -40,7 +40,16 @@ public class PacienteController {
 	@Path("/salvar")
 	public void salvar(Paciente paciente) {
 		pacienteDao.salvar(paciente);
-		result.redirectTo(this).form();
+		result.include("mensagem", "Paciente salvo com sucesso!");
+		result.redirectTo(this).listar();
+	}
+
+	@Path("/excluir/{id}")
+	public void excluir(Integer id) {
+		Paciente paciente = pacienteDao.carregar(id);
+		pacienteDao.excluir(paciente);
+		result.include("mensagem", "Paciente excluído com sucesso!");
+		result.redirectTo(this).listar();
 	}
 	
 }
