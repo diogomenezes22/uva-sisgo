@@ -14,7 +14,7 @@ public class EstadoCivilDao {
 	private Session session;
 	
 	@SuppressWarnings("unchecked")
-	public Collection<EstadoCivil> list() {
+	public Collection<EstadoCivil> listar() {
 		return (Collection<EstadoCivil>) session.createCriteria(EstadoCivil.class).list();
 	}
 

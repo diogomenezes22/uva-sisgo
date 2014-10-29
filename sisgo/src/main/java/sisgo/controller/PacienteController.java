@@ -20,14 +20,20 @@ public class PacienteController {
 	@Inject
 	private EstadoCivilDao estadoCivilDao;	
 
+	
+	@Path("/listar")
+	public void listar() {
+		result.include("pacientes", pacienteDao.listar());
+	}	
+	
 	@Path("/form")
 	public void form() {
-		result.include("estadosCivis", estadoCivilDao.list());
+		result.include("estadosCivis", estadoCivilDao.listar());
 	}
 	
 	@Path("/form/{id}")
 	public void editar(Integer id) {
-		result.include("paciente", pacienteDao.load(id));
+		result.include("paciente", pacienteDao.carregar(id));
 		result.redirectTo(this).form();
 	}
 	
