@@ -31,14 +31,14 @@
 				<div class="form-group">
 					<label for="nome" class="col-sm-2 control-label">Nome</label>
 					<div class="col-sm-10">
-						<input type="text" id="nome" name="paciente.nome" class="form-control" placeholder="Nome" value="${paciente.nome}">
+						<input type="text" id="nome" name="paciente.nome" class="form-control" placeholder="Nome" value="${paciente.nome}" required>
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-2 control-label">Sexo</label>
 					<div class="radio">
-						<label for="sexoMasculino">Masculino</label><input type="radio" id="sexoMasculino" name="paciente.sexo" value="M" <c:if test="${paciente.sexo == MASCULINO}">checked</c:if>>
-						<label for="sexoFeminino">Feminino</label><input type="radio" id="sexoFeminino" name="paciente.sexo" value="F" <c:if test="${paciente.sexo == FEMININO}">checked</c:if>>
+						<label for="sexoMasculino">Masculino</label><input type="radio" id="sexoMasculino" name="paciente.sexo" value="M" <c:if test="${paciente.sexo == MASCULINO}">checked</c:if> required>
+						<label for="sexoFeminino">Feminino</label><input type="radio" id="sexoFeminino" name="paciente.sexo" value="F" <c:if test="${paciente.sexo == FEMININO}">checked</c:if> required>
 					</div>
 				</div>
 				<div class="form-group">
@@ -60,7 +60,7 @@
 				<div class="form-group">
 					<label for="dataNascimento" class="col-sm-2 control-label">Data</label>
 					<div class="col-sm-10">
-						<input type="date" id="dataNascimento" name="paciente.dataNascimento" class="form-control" value="<fmt:formatDate value="${paciente.dataNascimento}" pattern="yyyy-MM-dd" />">
+						<input type="date" id="dataNascimento" name="paciente.dataNascimento" class="form-control" value="<fmt:formatDate value="${paciente.dataNascimento}" pattern="yyyy-MM-dd" />" required>
 					</div>
 				</div>								
 				<div class="form-group">
@@ -84,7 +84,7 @@
 				<div class="form-group">
 					<label for="celular" class="col-sm-2 control-label">Celular</label>
 					<div class="col-sm-10">
-						<input type="text" id="celular" name="paciente.celular" class="form-control" placeholder="Celular" value="${paciente.celular}">
+						<input type="text" id="celular" name="paciente.celular" class="form-control" placeholder="Celular" value="${paciente.celular}" required>
 					</div>
 				</div>
 				<div class="form-group">
