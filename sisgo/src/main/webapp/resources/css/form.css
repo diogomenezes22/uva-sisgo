@@ -7,6 +7,11 @@ input[type="radio"] {
 	margin-left: 5px !important;
 }
 
+input[type="checkbox"] {
+	position: relative !important;
+	margin-left: 0px !important;
+}
+
 .acao form{
 	width: 20px;
 	float: left;
