@@ -13,6 +13,7 @@
 			<ul class="nav navbar-nav">
 				<li class="active"><a href="#">Home</a></li>
 				<li><a href="${rootPath}/paciente/listar">Pacientes</a></li>
+				<li><a href="${rootPath}/tratamento/listar">Tratamentos</a></li>
 				<li><a href="#contact">Contact</a></li>
 			</ul>
 		</div>
