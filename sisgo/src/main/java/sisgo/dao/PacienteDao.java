@@ -32,4 +32,14 @@ public class PacienteDao {
 			e.printStackTrace();
 		}
 	}
+	
+	public void excluir(Paciente paciente) {
+		
+		try {
+			session.delete(paciente);
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+	}	
 }

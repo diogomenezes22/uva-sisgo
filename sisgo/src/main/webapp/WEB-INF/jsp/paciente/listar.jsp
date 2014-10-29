@@ -28,6 +28,7 @@
 			<div class="formHeader">
 				<h3>Listagem de Paciente</h3>
 			</div>
+			<div class="mensagemSucesso">${mensagem}</div>
 			<table id="tabelaPaciente" class="table table-striped table-bordered dataTable no-footer">
 				<thead>
 					<th>Nome</th>
@@ -45,8 +46,9 @@
 							<td><fmt:formatDate value="${paciente.dataNascimento}" pattern="dd-MM-yyyy" /></td>
 							<td>${paciente.celular}</td>
 							<td>${paciente.email}</td>						
-							<td>
+							<td class="acao">
 								<form id="editar" action="${rootPath}/paciente/form/${paciente.id}" method="get"><input type="image" src="${rootPath}/resources/images/editar.gif" title="Editar Paciente"></form>
+								<form id="excluir" action="${rootPath}/paciente/excluir/${paciente.id}" method="get"><input type="image" src="${rootPath}/resources/images/excluir.gif" title="Excluir Paciente"></form>
 							</td>
 						</tr>
 					</c:forEach>

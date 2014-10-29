@@ -6,3 +6,9 @@
 input[type="radio"] {
 	margin-left: 5px !important;
 }
+
+.acao form{
+	width: 20px;
+	float: left;
+	padding: 0px 25px 0px 0px;
+}
