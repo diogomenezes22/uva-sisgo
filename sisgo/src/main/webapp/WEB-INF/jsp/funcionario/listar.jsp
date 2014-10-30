@@ -49,8 +49,8 @@
 							<td><fmt:formatDate value="${funcionario.dataAdmissao}" pattern="dd/MM/yyyy" /></td>
 							<td>${funcionario.salario}</td>						
 							<td class="acao">
-								<form id="editar" action="${rootPath}/funcionario/form/${funcionario.id}" method="get"><input type="image" src="${rootPath}/resources/images/editar.gif" title="Editar Funcionario"></form>
-								<form id="excluir" action="${rootPath}/funcionario/excluir/${funcionario.id}" method="get"><input type="image" src="${rootPath}/resources/images/excluir.gif" title="Excluir Funcionario"></form>
+								<form class="editar" action="${rootPath}/funcionario/form/${funcionario.id}" method="get"><input type="image" src="${rootPath}/resources/images/editar.gif" title="Editar Funcionario"></form>
+								<form class="excluir" action="${rootPath}/funcionario/excluir/${funcionario.id}" method="get"><input type="image" src="${rootPath}/resources/images/excluir.gif" title="Excluir Funcionario"></form>
 							</td>
 						</tr>
 					</c:forEach>

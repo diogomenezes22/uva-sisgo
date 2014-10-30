@@ -47,8 +47,8 @@
 							<td>${paciente.celular}</td>
 							<td>${paciente.email}</td>						
 							<td class="acao">
-								<form id="editar" action="${rootPath}/paciente/form/${paciente.id}" method="get"><input type="image" src="${rootPath}/resources/images/editar.gif" title="Editar Paciente"></form>
-								<form id="excluir" action="${rootPath}/paciente/excluir/${paciente.id}" method="get"><input type="image" src="${rootPath}/resources/images/excluir.gif" title="Excluir Paciente"></form>
+								<form class="editar" action="${rootPath}/paciente/form/${paciente.id}" method="get"><input type="image" src="${rootPath}/resources/images/editar.gif" title="Editar Paciente"></form>
+								<form class="excluir" action="${rootPath}/paciente/excluir/${paciente.id}" method="get"><input type="image" src="${rootPath}/resources/images/excluir.gif" title="Excluir Paciente"></form>
 							</td>
 						</tr>
 					</c:forEach>
