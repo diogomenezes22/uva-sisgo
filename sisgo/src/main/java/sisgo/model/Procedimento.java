@@ -1,18 +1,22 @@
 package sisgo.model;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="procedimento")
+@SequenceGenerator(sequenceName="procedimento_id_seq", name="seq")
 public class Procedimento {
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO, generator="seq")
 	private Integer id;
-	private Double valor;
 	@ManyToOne
 	@JoinColumn(name="plano_tratamento_id")
 	private PlanoTratamento planoTratamento;
@@ -25,12 +29,6 @@ public class Procedimento {
 	}
 	public void setId(Integer id) {
 		this.id = id;
-	}
-	public Double getValor() {
-		return valor;
-	}
-	public void setValor(Double valor) {
-		this.valor = valor;
 	}
 	public PlanoTratamento getPlanoTratamento() {
 		return planoTratamento;
