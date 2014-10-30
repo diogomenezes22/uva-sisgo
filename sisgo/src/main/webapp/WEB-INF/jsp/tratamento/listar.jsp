@@ -41,8 +41,8 @@
 							<td>${tratamento.nome}</td>
 							<td>${tratamento.valor}</td>						
 							<td class="acao">
-								<form id="editar" action="${rootPath}/tratamento/form/${tratamento.id}" method="get"><input type="image" src="${rootPath}/resources/images/editar.gif" title="Editar Tratamento"></form>
-								<form id="excluir" action="${rootPath}/tratamento/excluir/${tratamento.id}" method="get"><input type="image" src="${rootPath}/resources/images/excluir.gif" title="Excluir Tratamento"></form>
+								<form class="editar" action="${rootPath}/tratamento/form/${tratamento.id}" method="get"><input type="image" src="${rootPath}/resources/images/editar.gif" title="Editar Tratamento"></form>
+								<form class="excluir" action="${rootPath}/tratamento/excluir/${tratamento.id}" method="get"><input type="image" src="${rootPath}/resources/images/excluir.gif" title="Excluir Tratamento"></form>
 							</td>
 						</tr>
 					</c:forEach>

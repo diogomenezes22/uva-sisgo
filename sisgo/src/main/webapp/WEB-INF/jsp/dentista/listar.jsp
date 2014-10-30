@@ -49,8 +49,8 @@
 							<td>${dentista.celular}</td>
 							<td><c:choose><c:when test="${dentista.admin}">Sim</c:when><c:otherwise>Nao</c:otherwise></c:choose></td>						
 							<td class="acao">
-								<form id="editar" action="${rootPath}/dentista/form/${dentista.id}" method="get"><input type="image" src="${rootPath}/resources/images/editar.gif" title="Editar Dentista"></form>
-								<form id="excluir" action="${rootPath}/dentista/excluir/${dentista.id}" method="get"><input type="image" src="${rootPath}/resources/images/excluir.gif" title="Excluir Dentista"></form>
+								<form class="editar" action="${rootPath}/dentista/form/${dentista.id}" method="get"><input type="image" src="${rootPath}/resources/images/editar.gif" title="Editar Dentista"></form>
+								<form class="excluir" action="${rootPath}/dentista/excluir/${dentista.id}" method="get"><input type="image" src="${rootPath}/resources/images/excluir.gif" title="Excluir Dentista"></form>
 							</td>
 						</tr>
 					</c:forEach>
