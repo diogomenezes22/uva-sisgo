@@ -16,11 +16,12 @@
 	<body>
 
 		<%@ include file="../include/topo.jsp" %>
+		<input type="hidden" id="pagina" value="paginaPrincipal">
 
 		<div class="container">
 			<div class="template">
-				<h1>Bootstrap starter template</h1>
-				<p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
+				<h1>Bem vindo ao sistema odontológico SISGO</h1>
+				<p class="lead">Hoje temos X consultas marcadas!</p>
 			</div>
     	</div>
 

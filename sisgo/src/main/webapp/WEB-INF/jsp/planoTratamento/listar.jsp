@@ -25,6 +25,7 @@
 		<%@ include file="../include/topo.jsp" %>
 
 		<div class="container">
+			<input type="hidden" id="pacienteId" value="${paciente.id}">
 			<div class="formHeader">
 				<h3>Listagem de Planos de Tratamento (${paciente.nome})</h3>
 			</div>

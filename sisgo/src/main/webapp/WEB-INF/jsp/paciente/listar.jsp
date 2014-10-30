@@ -23,6 +23,7 @@
 	<body>
 
 		<%@ include file="../include/topo.jsp" %>
+		<input type="hidden" id="pagina" value="paginaPaciente">
 
 		<div class="container">
 			<div class="formHeader">

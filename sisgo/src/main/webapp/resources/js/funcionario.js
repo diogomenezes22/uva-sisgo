@@ -1,6 +1,6 @@
 $(function() {
 	
-	aplicarDataTable($('#tabelaFuncionario'));
+	aplicarDataTable($('#tabelaFuncionario'), $("#rootPath").val() + "/funcionario/form", "Novo Funcionario");
 	
 	$("#cpf").mask("999.999.999-99");
 	

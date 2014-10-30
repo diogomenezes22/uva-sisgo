@@ -1,6 +1,6 @@
 $(function() {
 	
-	aplicarDataTable($('#tabelaTratamento'));
+	aplicarDataTable($('#tabelaTratamento'), $("#rootPath").val() + "/tratamento/form", "Novo Tratamento");
 	
 	$("#valor").maskMoney({prefix:'R$ ', allowNegative: true, thousands:'.', decimal:',', affixesStay: false});
 	

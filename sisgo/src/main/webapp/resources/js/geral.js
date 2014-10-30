@@ -1,5 +1,15 @@
-function aplicarDataTable(table) {
-	oTable = $(table).dataTable({		
+function aplicarDataTable(table, urlButton, textButton) {
+	oTable = $(table).dataTable({
+		"sDom": "T<'clear'>lfrtip",
+		"oTableTools": {
+			"aButtons": [{
+			             "sExtends": "text",
+			             "sButtonText": textButton,
+			             "fnClick": function(nButton, oConfig, oFlash) {
+			            	 location.href = urlButton;
+			             }
+			}]
+		},
 		"aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "Todos"]],
 		"oLanguage": {
 			"oPaginate": {

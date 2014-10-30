@@ -1,6 +1,6 @@
 $(function() {
 	
-	aplicarDataTable($('#tabelaDentista'));
+	aplicarDataTable($('#tabelaDentista'), $("#rootPath").val() + "/dentista/form", "Novo Dentista");
 	
 	$("#cpf").mask("999.999.999-99");
 	
