@@ -32,6 +32,7 @@
 			<div class="mensagemSucesso">${mensagem}</div>
 			<table id="tabelaFuncionario" class="table table-striped table-bordered dataTable no-footer">
 				<thead>
+					<th>Codigo</th>
 					<th>Nome</th>
 					<th>Login</th>
 					<th>Data de Nascimento</th>
@@ -43,6 +44,7 @@
 				<tbody>
 					<c:forEach items="${funcionarios}" var="funcionario">
 						<tr>
+							<td>${funcionario.id}</td>
 							<td>${funcionario.nome}</td>
 							<td>${funcionario.login}</td>
 							<td><fmt:formatDate value="${funcionario.dataNascimento}" pattern="dd/MM/yyyy" /></td>

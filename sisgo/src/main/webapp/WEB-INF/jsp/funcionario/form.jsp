@@ -30,6 +30,14 @@
 			</div>
 			<form id="funcionarioForm" action="${rootPath}/funcionario/salvar" method="post" class="form-horizontal" role="form">
 				<input type="hidden" id="id" name="funcionario.id" value="${funcionario.id}">
+				<c:if test="${not empty funcionario.id}">
+					<div class="form-group">
+						<label class="col-sm-2 control-label">Codigo</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" value="${funcionario.id}" readonly>
+						</div>
+					</div>				
+				</c:if>	
 				<div class="form-group">
 					<label for="nome" class="col-sm-2 control-label">Nome</label>
 					<div class="col-sm-10">

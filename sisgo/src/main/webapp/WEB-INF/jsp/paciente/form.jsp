@@ -29,6 +29,14 @@
 			</div>
 			<form id="pacienteForm" action="${rootPath}/paciente/salvar" method="post" class="form-horizontal" role="form">
 				<input type="hidden" id="id" name="paciente.id" value="${paciente.id}">
+				<c:if test="${not empty paciente.id}">
+					<div class="form-group">
+						<label class="col-sm-2 control-label">Codigo</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" value="${paciente.id}" readonly>
+						</div>
+					</div>				
+				</c:if>
 				<div class="form-group">
 					<label for="nome" class="col-sm-2 control-label">Nome</label>
 					<div class="col-sm-10">

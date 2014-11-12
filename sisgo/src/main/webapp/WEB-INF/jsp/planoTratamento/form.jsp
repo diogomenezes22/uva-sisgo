@@ -31,6 +31,14 @@
 			<form id="planoTratamentoForm" action="${rootPath}/plano-tratamento/salvar" method="post" class="form-horizontal" role="form">
 				<input type="hidden" id="id" name="planoTratamento.id" value="${planoTratamento.id}">
 				<input type="hidden" id="id" name="planoTratamento.paciente.id" value="${paciente.id}">
+				<c:if test="${not empty planoTratamento.id}">
+					<div class="form-group">
+						<label class="col-sm-2 control-label">Codigo</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" value="${planoTratamento.id}" readonly>
+						</div>
+					</div>				
+				</c:if>				
 				<div class="form-group">
 					<label for="dataInicial" class="col-sm-2 control-label">Data de Inicio</label>
 					<div class="col-sm-10">
