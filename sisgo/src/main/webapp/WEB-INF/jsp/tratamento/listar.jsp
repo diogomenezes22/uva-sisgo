@@ -32,6 +32,7 @@
 			<div class="mensagemSucesso">${mensagem}</div>
 			<table id="tabelaTratamento" class="table table-striped table-bordered dataTable no-footer">
 				<thead>
+					<th>Codigo</th>
 					<th>Nome</th>
 					<th>Valor</th>
 					<th>Acoes</th>
@@ -39,6 +40,7 @@
 				<tbody>
 					<c:forEach items="${tratamentos}" var="tratamento">
 						<tr>
+							<td>${tratamento.id}</td>
 							<td>${tratamento.nome}</td>
 							<td>${tratamento.valor}</td>						
 							<td class="acao">

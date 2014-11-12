@@ -32,6 +32,7 @@
 			<div class="mensagemSucesso">${mensagem}</div>
 			<table id="tabelaPaciente" class="table table-striped table-bordered dataTable no-footer">
 				<thead>
+					<th>Codigo</th>
 					<th>Nome</th>
 					<th>Sexo</th>
 					<th>Data de Nascimento</th>
@@ -42,6 +43,7 @@
 				<tbody>
 					<c:forEach items="${pacientes}" var="paciente">
 						<tr>
+							<td>${paciente.id}</td>
 							<td>${paciente.nome}</td>
 							<td>${paciente.sexo}</td>
 							<td><fmt:formatDate value="${paciente.dataNascimento}" pattern="dd/MM/yyyy" /></td>

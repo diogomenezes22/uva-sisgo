@@ -32,6 +32,7 @@
 			<div class="mensagemSucesso">${mensagem}</div>
 			<table id="tabelaPlanoTratamento" class="table table-striped table-bordered dataTable no-footer">
 				<thead>
+					<th>Codigo</th>
 					<th>Data de Inicio</th>
 					<th>Procedimentos</th>
 					<th>Data de Conclusao</th>
@@ -42,6 +43,7 @@
 				<tbody>
 					<c:forEach items="${planosDeTratamento}" var="planoTratamento">
 						<tr>
+							<td>${planoTratamento.id}</td>
 							<td><fmt:formatDate value="${planoTratamento.dataInicial}" pattern="dd/MM/yyyy" /></td>
 							<td>${fn:length(planoTratamento.procedimentos)}</td>
 							<td><fmt:formatDate value="${planoTratamento.dataConclusao}" pattern="dd/MM/yyyy" /></td>

@@ -32,6 +32,7 @@
 			<div class="mensagemSucesso">${mensagem}</div>
 			<table id="tabelaDentista" class="table table-striped table-bordered dataTable no-footer">
 				<thead>
+					<th>Codigo</th>
 					<th>Nome</th>
 					<th>CRO</th>
 					<th>Login</th>
@@ -43,6 +44,7 @@
 				<tbody>
 					<c:forEach items="${dentistas}" var="dentista">
 						<tr>
+							<td>${dentista.id}</td>
 							<td>${dentista.nome}</td>
 							<td>${dentista.cro}</td>
 							<td>${dentista.login}</td>
