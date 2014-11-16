@@ -51,6 +51,7 @@
 							<td>${paciente.email}</td>						
 							<td class="acao">
 								<form class="editar" action="${rootPath}/paciente/form/${paciente.id}" method="get"><input type="image" src="${rootPath}/resources/images/editar.gif" title="Editar Paciente"></form>
+								<form class="verAnamneses" action="${rootPath}/anamnese/listar/${paciente.id}" method="get"><input type="image" src="${rootPath}/resources/images/anamnese.png" title="Ver Anamneses"></form>
 								<form class="verPlanos" action="${rootPath}/plano-tratamento/listar/${paciente.id}" method="get"><input type="image" src="${rootPath}/resources/images/planoTratamento.png" title="Ver Planos de Tratamento"></form>								
 								<form class="excluir" action="${rootPath}/paciente/excluir/${paciente.id}" method="get"><input type="image" src="${rootPath}/resources/images/excluir.gif" title="Excluir Paciente"></form>
 							</td>

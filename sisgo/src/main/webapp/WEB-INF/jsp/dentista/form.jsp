@@ -26,7 +26,8 @@
 
 		<div class="container">
 			<div class="formHeader">
-				<h3>Formulario de Dentista</h3>
+				<div class="leftHeader"><h3>Formulario de Dentista</h3></div>
+				<div class="rightHeader"><form class="voltar" action="${rootPath}/dentista/listar" method="get"><input type="image" src="${rootPath}/resources/images/voltar.png" title="Voltar"></form></div>				
 			</div>
 			<form id="dentistaForm" action="${rootPath}/dentista/salvar" method="post" class="form-horizontal" role="form">
 				<input type="hidden" id="id" name="dentista.id" value="${dentista.id}">
