@@ -1,0 +1,46 @@
+/* HTML TAGS */
+
+body
+{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 80%;
+	background-color: #FFFFFF;
+	color: #000000;
+}
+
+
+
+
+/* OBJECTS */
+
+#queixa { 
+	height: 50px;
+}
+
+#medicamento {
+	height: 20px;
+}
+
+#antecedentes, #observacoes {
+	height: 50px;
+}
+
+#localData {
+	width: 50%; 
+	float: left;
+}
+
+#assinatura {
+	width: 50%; 
+	float: right; 
+	text-align: right;
+}
+
+
+
+
+
+/* CLASSES */
+.topo {
+	text-align: center
+}
