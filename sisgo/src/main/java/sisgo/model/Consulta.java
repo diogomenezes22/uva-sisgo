@@ -2,6 +2,7 @@ package sisgo.model;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -14,7 +15,10 @@ public class Consulta {
 
 	@Id
 	private Integer id;
-	private Date data;
+	@Column(name="data_inicial")
+	private Date dataInicial;
+	@Column(name="data_final")
+	private Date dataFinal;	
 	private String obs;
 	@ManyToOne
 	@JoinColumn(name="paciente_id")
@@ -24,7 +28,7 @@ public class Consulta {
 	private Usuario usuario;
 	@ManyToOne
 	@JoinColumn(name="dentista_id")	
-	private Dentista dentista;
+	private Dentista dentista;	
 	
 	public Integer getId() {
 		return id;
@@ -32,11 +36,17 @@ public class Consulta {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public Date getData() {
-		return data;
+	public Date getDataInicial() {
+		return dataInicial;
 	}
-	public void setData(Date data) {
-		this.data = data;
+	public void setDataInicial(Date dataInicial) {
+		this.dataInicial = dataInicial;
+	}
+	public Date getDataFinal() {
+		return dataFinal;
+	}
+	public void setDataFinal(Date dataFinal) {
+		this.dataFinal = dataFinal;
 	}
 	public String getObs() {
 		return obs;
