@@ -1,11 +1,13 @@
-$(document).ready(function() {
-
-
+$(document).ready(function() {	
+	
+	
    var $calendar = $('#calendar');
    var id = 10;
 
    $calendar.weekCalendar({
       timeslotsPerHour : 4,
+      allowCalEventOverlap : true,
+      overlapEventsSeparate: true,
       businessHours :{start: 8, end: 18, limitDisplay: true },
       height : function($calendar) {
          return $(window).height() - $("h1").outerHeight() - 1;
@@ -250,5 +252,6 @@ $(document).ready(function() {
       }
 
    });
-
+   
+   
 });

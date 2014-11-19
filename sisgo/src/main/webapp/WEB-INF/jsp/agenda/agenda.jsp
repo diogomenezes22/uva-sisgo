@@ -14,15 +14,26 @@
 
     	<title>SISGO</title>
 
-    	<link href="${rootPath}/resources/css/agendaReset.css" rel="stylesheet">
+    	<link href="${rootPath}/resources/css/agendaReset.css" rel="stylesheet">    	
 		<link href="${rootPath}/resources/css/jquery-ui.forweekcalendar.css" rel="stylesheet">
 		<link href="${rootPath}/resources/css/jquery.weekcalendar.css" rel="stylesheet">
+		<link href="${rootPath}/resources/css/autocomplete.css" rel="stylesheet">
 		<link href="${rootPath}/resources/css/agenda.css" rel="stylesheet">    	
+    	
+    	<script src="${rootPath}/resources/js/jquery.min.js"></script>
+    	<script src="${rootPath}/resources/js/jquery.autocomplete.min.js"></script>    	    	    	    	
+		<script type="text/javascript">
+		 //Variavel para utilizar no jquery do autocomplete. O jquery do calendar fica igual.
+		var $a = jQuery.noConflict();
+		</script>
+    	<script src="${rootPath}/resources/js/countries.js"></script>		
+		<script src="${rootPath}/resources/js/agendaAutocomplete.js"></script>    	
+    	
 		<script src="${rootPath}/resources/js/jquery.forweekcalendar.js"></script>
 		<script src="${rootPath}/resources/js/jquery-ui.forweekcalendar.js"></script>
-    	<script src="${rootPath}/resources/js/jquery.weekcalendar.js"></script>
-    	<script src="${rootPath}/resources/js/jquery.autocomplete.min.js"></script>    	
+    	<script src="${rootPath}/resources/js/jquery.weekcalendar.js"></script>    	    	
     	<script src="${rootPath}/resources/js/agenda.js"></script>
+    	
     	    	
 	</head>
 
@@ -50,6 +61,7 @@
 					<li>
 						<label for="patient">Paciente: </label><input type="text" id="patient" name="patient" />
 						<input type="hidden" id="patientId" name="patientId">
+						<div id="selction-ajax"></div>
 					</li>
 					<li>
 						<label for="dentista">Dentista: </label><input type="text" id="dentist" name="dentist" />
