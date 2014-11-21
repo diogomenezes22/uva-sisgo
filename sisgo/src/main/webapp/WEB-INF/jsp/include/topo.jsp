@@ -13,10 +13,12 @@
 		<div class="collapse navbar-collapse">
 			<ul class="nav navbar-nav">
 				<li class="pagina paginaPrincipal active"><a href="${rootPath}/principal">Home</a></li>
+				<li class="pagina paginaAgenda"><a href="${rootPath}/agenda/">Agenda</a></li>
 				<li class="pagina paginaPaciente"><a href="${rootPath}/paciente/listar">Pacientes</a></li>
 				<li class="pagina paginaDentista"><a href="${rootPath}/dentista/listar">Dentistas</a></li>
 				<li class="pagina paginaFuncionario"><a href="${rootPath}/funcionario/listar">Funcionarios</a></li>
 				<li class="pagina paginaTratamento"><a href="${rootPath}/tratamento/listar">Tratamentos</a></li>
+				<li class="pagina paginaTratamento"><a href="${rootPath}/tratamento/listar">Relatorios</a></li>
 			</ul>
 		</div>
 	</div>

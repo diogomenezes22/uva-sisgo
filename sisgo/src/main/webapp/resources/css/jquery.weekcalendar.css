@@ -6,8 +6,35 @@
 }
 
 .wc-nav {
+	background-color: #222;
+	min-height: 22px;
 	padding: 1em;
 	text-align: right;	
+}
+
+.wc-nav .wc-logo {
+	float: left;	
+	font-size: 24px;
+	line-height: 22px;
+	color: #FFF;
+	margin-left: 100px;	
+}
+
+.wc-nav .wc-menu {
+	float: left;	
+	color: #777;
+	margin-left: 29px;
+	margin-top: 3px;	
+	cursor: pointer;
+}
+
+.wc-menu a {
+	text-decoration: none;
+	color: #777;
+}
+
+.wc-nav .selected > a{	
+	color: #FFF;	
 }
 
 .wc-nav button {

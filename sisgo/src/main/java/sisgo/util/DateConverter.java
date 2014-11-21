@@ -1,6 +1,5 @@
 package sisgo.util;
 
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -17,11 +16,15 @@ public class DateConverter implements Converter<Date> {
 	@Override
 	public Date convert(String data, Class<? extends Date> arg1) {
 		
-        DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         try {
-			return (Date) format.parse(data);
+			return (Date) new SimpleDateFormat("yyyy-MM-dd").parse(data);
 		} catch (ParseException e) {
-			e.printStackTrace();
+			try {
+				return (Date) new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(data);
+			}
+			catch (ParseException e2) {
+				e.printStackTrace();
+			}
 		}		
         return null;
 	}

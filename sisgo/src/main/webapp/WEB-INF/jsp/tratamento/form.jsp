@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 	<head>
 	    <meta charset="utf-8">
 	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -47,7 +47,7 @@
 				<div class="form-group">
 					<label for="valor" class="col-sm-2 control-label">Valor</label>
 					<div class="col-sm-10">
-						<input type="text" id="valor" name="tratamento.valor" class="form-control" placeholder="Valor" value="${tratamento.valor}" required>
+						<input type="text" id="valor" name="tratamento.valor" class="form-control" placeholder="Valor" value="<fmt:formatNumber type="number" minFractionDigits="2" value="${tratamento.valor}" />" required>
 					</div>
 				</div>							
 				<div class="form-group">
