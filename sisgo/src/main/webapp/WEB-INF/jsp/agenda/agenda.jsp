@@ -53,19 +53,20 @@
 						<span>Data: </span><span class="date_holder"></span> 
 					</li>
 					<li>
-						<label for="start">De: </label><select id="start" name="start"><option value="">--De</option></select>
+						<label for="start">De: </label><select id="start" name="start"></select>
 					</li>
 					<li>
-						<label for="end">Ate: </label><select id="end" name="end"><option value="">--Ate</option></select>
+						<label for="end">Ate: </label><select id="end" name="end"></select>
 					</li>					
 					<li>
 						<label for="patient">Paciente: </label><input type="text" id="patient" name="patient" />
 						<input type="hidden" id="patientId" name="patientId">
-						<div id="selction-ajax"></div>
+						<div id="patientAutocompleteSuggestion"></div>
 					</li>
 					<li>
 						<label for="dentista">Dentista: </label><input type="text" id="dentist" name="dentist" />
 						<input type="hidden" id="dentistId" name="dentistId">
+						<div id="patientAutocompleteSuggestion"></div>
 					</li>
 					<li>
 						<label for="obs">Obs: </label><textarea id="obs" name="obs"></textarea>

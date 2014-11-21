@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 	<head>
 	    <meta charset="utf-8">
 	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -50,7 +50,7 @@
 							<td><fmt:formatDate value="${funcionario.dataNascimento}" pattern="dd/MM/yyyy" /></td>
 							<td>${funcionario.celular}</td>
 							<td><fmt:formatDate value="${funcionario.dataAdmissao}" pattern="dd/MM/yyyy" /></td>
-							<td>${funcionario.salario}</td>						
+							<td><fmt:formatNumber type="number" minFractionDigits="2" value="${funcionario.salario}" /></td>						
 							<td class="acao">
 								<form class="editar" action="${rootPath}/funcionario/form/${funcionario.id}" method="get"><input type="image" src="${rootPath}/resources/images/editar.gif" title="Editar Funcionario"></form>
 								<form class="excluir" action="${rootPath}/funcionario/excluir/${funcionario.id}" method="get"><input type="image" src="${rootPath}/resources/images/excluir.gif" title="Excluir Funcionario"></form>

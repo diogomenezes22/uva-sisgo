@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 	<head>
 	    <meta charset="utf-8">
 	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -114,7 +114,7 @@
 				<div class="form-group">
 					<label for="salario" class="col-sm-2 control-label">Salario</label>
 					<div class="col-sm-10">
-						<input type="text" id="salario" name="funcionario.salario" class="form-control" placeholder="Salario" value="${funcionario.salario}" required>
+						<input type="text" id="salario" name="funcionario.salario" class="form-control" placeholder="Salario" value="<fmt:formatNumber type="number" minFractionDigits="2" value="${funcionario.salario}" />" required>
 					</div>
 				</div>								
 				<div class="form-group">

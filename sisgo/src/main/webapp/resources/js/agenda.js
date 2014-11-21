@@ -2,8 +2,7 @@ $(document).ready(function() {
 	
 	
    var $calendar = $('#calendar');
-   var id = 10;
-
+   
    $calendar.weekCalendar({
       timeslotsPerHour : 4,
       allowCalEventOverlap : true,
@@ -47,21 +46,45 @@ $(document).ready(function() {
                $('#calendar').weekCalendar("removeUnsavedEvents");
             },
             buttons: {
-               save : function() {
-                  calEvent.id = id;
-                  id++;
-                  calEvent.start = new Date(startField.val());
-                  calEvent.end = new Date(endField.val());
-                  calEvent.patient = patientField.val();
-                  calEvent.dentist = dentistField.val();
-                  calEvent.obs = obsField.val();
+               Salvar : function() {
+            	   
+					$.ajax({
+						async: false,
+						url: "/sisgo/agenda/salvar",
+						type: "post",
+						data: {
+							"consulta.dataInicial": formatDate(new Date(startField.val())),
+							"consulta.dataFinal": formatDate(new Date(endField.val())),
+							"consulta.paciente.id": patientIdField.val(),
+							"consulta.dentista.id": dentistIdField.val(),
+							"consulta.obs": obsField.val()
+						},
+						error: function(jqXHR, textStatus, errorThrown) {
+							alert("Erro ao salvar consulta!");
+						},
+						success: function(consultationId) {
+							if(consultationId != null) {
+								calEvent.id = consultationId;
+								calEvent.start = new Date(startField.val());
+								calEvent.end = new Date(endField.val());
+								calEvent.patient = patientField.val();
+								calEvent.patientId = patientIdField.val();
+								calEvent.dentist = dentistField.val();
+								calEvent.dentistId = dentistIdField.val();
+								calEvent.obs = obsField.val();
+																
+								$calendar.weekCalendar("updateEvent", calEvent);								
+							}
+							else {
+								alert("Erro ao salvar consulta!");
+							}
+						},
+						complete: function() {
+							$calendar.weekCalendar("removeUnsavedEvents");
+							$dialogContent.dialog("close");
+						}
+					});					
 
-                  $calendar.weekCalendar("removeUnsavedEvents");
-                  $calendar.weekCalendar("updateEvent", calEvent);
-                  $dialogContent.dialog("close");
-               },
-               cancel : function() {
-                  $dialogContent.dialog("close");
                }
             }
          }).show();
@@ -71,8 +94,10 @@ $(document).ready(function() {
 
       },
       eventDrop : function(calEvent, $event) {
+    	  updateConsultation(calEvent)
       },
       eventResize : function(calEvent, $event) {
+    	  updateConsultation(calEvent)
       },
       eventClick : function(calEvent, $event) {
 
@@ -85,7 +110,9 @@ $(document).ready(function() {
          var startField = $dialogContent.find("select[name='start']").val(calEvent.start);
          var endField = $dialogContent.find("select[name='end']").val(calEvent.end);
          var patientField = $dialogContent.find("input[name='patient']").val(calEvent.patient);
+         var patientIdField = $dialogContent.find("input[name='patientId']").val(calEvent.patientId);
          var dentistField = $dialogContent.find("input[name='dentist']").val(calEvent.dentist);
+         var dentistIdField = $dialogContent.find("input[name='dentistId']").val(calEvent.dentistId);
          var obsField = $dialogContent.find("textarea[name='obs']");
          obsField.val(calEvent.obs);
 
@@ -98,23 +125,72 @@ $(document).ready(function() {
                $('#calendar').weekCalendar("removeUnsavedEvents");
             },
             buttons: {
-               save : function() {
+               Salvar : function() {
 
-                   calEvent.start = new Date(startField.val());
-                   calEvent.end = new Date(endField.val());
-                   calEvent.patient = patientField.val();
-                   calEvent.dentist = dentistField.val();
-                   calEvent.obs = obsField.val();
+					$.ajax({
+						async: false,
+						url: "/sisgo/agenda/atualizar",
+						type: "post",
+						data: {
+							"consulta.id": calEvent.id,
+							"consulta.dataInicial": formatDate(new Date(startField.val())),
+							"consulta.dataFinal": formatDate(new Date(endField.val())),
+							"consulta.paciente.id": patientIdField.val(),
+							"consulta.dentista.id": dentistIdField.val(),
+							"consulta.obs": obsField.val()
+						},						
+						error: function(jqXHR, textStatus, errorThrown) {
+							alert("Erro ao atualizar consulta!");
+						},
+						success: function(updated) {
+							if(updated) {
+								calEvent.start = new Date(startField.val());
+								calEvent.end = new Date(endField.val());
+								calEvent.patient = patientField.val();
+								calEvent.patientId = patientIdField.val();
+								calEvent.dentist = dentistField.val();
+								calEvent.dentistId = dentistIdField.val();
+								calEvent.obs = obsField.val();
+																
+								$calendar.weekCalendar("updateEvent", calEvent);								
+							}
+							else {
+								alert("Erro ao atualizar consulta!");
+							}
+						},
+						complete: function() {
+							$calendar.weekCalendar("removeUnsavedEvents");
+							$dialogContent.dialog("close");
+						}
+					});
+               },
+               Excluir : function() {
+            	   
+            	   if(confirm("Deseja excluir esta consulta?")) {
+						$.ajax({
+							async: false,
+							url: "/sisgo/agenda/excluir/" + calEvent.id,
+							type: "post",
+							error: function(jqXHR, textStatus, errorThrown) {
+								alert("Erro ao excluir consulta!");
+							},
+							success: function(deleted) {
+								if(deleted) {
+									$calendar.weekCalendar("removeEvent", calEvent.id);								
+								}
+								else {
+									alert("Erro ao excluir consulta!");
+								}
+							},
+							complete: function() {
+								$dialogContent.dialog("close");
+							}
+						});            	   
+            	   }
 
-                  $calendar.weekCalendar("updateEvent", calEvent);
-                  $dialogContent.dialog("close");
                },
-               "delete" : function() {
-                  $calendar.weekCalendar("removeEvent", calEvent.id);
-                  $dialogContent.dialog("close");
-               },
-               cancel : function() {
-                  $dialogContent.dialog("close");
+               Procedimentos: function() {
+            	   alert("Procedimento");
                }
             }
          }).show();
@@ -144,58 +220,24 @@ $(document).ready(function() {
    }
 
    function getEventData() {
-      var year = new Date().getFullYear();
-      var month = new Date().getMonth();
-      var day = new Date().getDate();
+	   
+	   var consultas;
+	   
+		$.ajax({
+			async: false,
+			url: "/sisgo/agenda/carregar-consultas",
+			type: "post",
+			dataType: "json",
+			error: function(jqXHR, textStatus, errorThrown) {
+				alert("Erro ao buscar consultas");
+			},
+			success: function(consultasJson) {
+				consultas = consultasJson;
+			}
+		});
+		
+		return {events : consultas};
 
-      return {
-         events : [
-            {
-               "id":1,
-               "start": new Date(year, month, day, 12),
-               "end": new Date(year, month, day, 13, 30),
-               "patient":"Tiago Corcos",
-               "dentist":"Douglas"
-            },
-            {
-               "id":2,
-               "start": new Date(year, month, day, 14),
-               "end": new Date(year, month, day, 14, 45),
-               "patient":"Maira Rosa",
-               "dentist":"Eduardo"
-            },
-            {
-               "id":3,
-               "start": new Date(year, month, day + 1, 17),
-               "end": new Date(year, month, day + 1, 17, 45),
-               "patient":"Juliana Corcos",
-               "dentist":"Ricardo"
-            },
-            {
-               "id":4,
-               "start": new Date(year, month, day - 1, 8),
-               "end": new Date(year, month, day - 1, 9, 30),
-               "patient":"Felipe Brito",
-               "dentist":"Douglas"
-            },
-            {
-               "id":5,
-               "start": new Date(year, month, day + 1, 14),
-               "end": new Date(year, month, day + 1, 15),
-               "patient":"Pedro Bezerra",
-               "dentist":"Eduardo"
-            },
-            {
-               "id":6,
-               "start": new Date(year, month, day, 10),
-               "end": new Date(year, month, day, 11),
-               "patient":"Sandra Regina",
-               "dentist":"Ricardo",
-               readOnly : true
-            }
-
-         ]
-      };
    }
 
 
@@ -209,11 +251,11 @@ $(document).ready(function() {
          var startTime = timeslotTimes[i].start;
          var endTime = timeslotTimes[i].end;
          var startSelected = "";
-         if (startTime.getTime() === calEvent.start.getTime()) {
+         if (dateEquals(startTime, calEvent.start)) {
             startSelected = "selected=\"selected\"";
          }
          var endSelected = "";
-         if (endTime.getTime() === calEvent.end.getTime()) {
+         if (dateEquals(endTime, calEvent.end)) {
             endSelected = "selected=\"selected\"";
          }
          $startTimeField.append("<option value=\"" + startTime + "\" " + startSelected + ">" + timeslotTimes[i].startFormatted + "</option>");
@@ -255,3 +297,41 @@ $(document).ready(function() {
    
    
 });
+
+function updateConsultation(calEvent) {
+	
+	$.ajax({
+		async: false,
+		url: "/sisgo/agenda/atualizar",
+		type: "post",
+		data: {
+			"consulta.id": calEvent.id,
+			"consulta.dataInicial": formatDate(calEvent.start),
+			"consulta.dataFinal": formatDate(calEvent.end),
+			"consulta.paciente.id": calEvent.patientId,
+			"consulta.dentista.id": calEvent.dentistId,
+			"consulta.obs": calEvent.obs
+		},						
+		error: function(jqXHR, textStatus, errorThrown) {
+			alert("Erro ao atualizar consulta!");
+		},
+		success: function(updated) {
+			if(!updated) {			
+				alert("Erro ao atualizar consulta!");
+			}
+		},
+		complete: function() {
+			$calendar.weekCalendar("removeUnsavedEvents");
+		}
+	});	
+}
+
+function formatDate(date) {
+	return (date.getDate() < 10 ? '0' : '') + date.getDate() + "/" + (date.getMonth() < 9 ? '0' : '') + (date.getMonth() + 1) + "/" + date.getFullYear() + " " + (date.getHours() < 10 ? '0' : '') + date.getHours() + ":" + (date.getMinutes() < 10 ? '0' : '') + date.getMinutes();
+}
+
+function dateEquals(date1, date2) {
+	var d1 = new Date(date1.getFullYear(), date1.getMonth(), date1.getDate(), date1.getHours(), date1.getMinutes(), 0, 0);
+	var d2 = new Date(date2.getFullYear(), date2.getMonth(), date2.getDate(), date2.getHours(), date2.getMinutes(), 0, 0);
+	return d1.getTime() == d2.getTime(); 
+}

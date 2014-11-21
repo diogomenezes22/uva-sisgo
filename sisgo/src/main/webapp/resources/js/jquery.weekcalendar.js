@@ -277,6 +277,14 @@
 
          if (options.buttons) {
             calendarNavHtml = "<div class=\"wc-nav\">\
+                    <div class=\"wc-logo\">SISGO</div>\
+            		<div class=\"wc-menu\"><a href=\"/sisgo/principal\">Home</a></div>\
+            		<div class=\"wc-menu selected\"><a href=\"/sisgo/agenda/\">Agenda</a></div>\
+            		<div class=\"wc-menu\"><a href=\"/sisgo/paciente/listar\">Pacientes</a></div>\
+            		<div class=\"wc-menu\"><a href=\"/sisgo/dentista/listar\">Dentistas</a></div>\
+            		<div class=\"wc-menu\"><a href=\"/sisgo/funcionario/listar\">Funcionarios</a></div>\
+            		<div class=\"wc-menu\"><a href=\"/sisgo/tratamento/listar\">Tratamentos</a></div>\
+            		<div class=\"wc-menu\">Relatorios</div>\
                     <button class=\"wc-today\">" + options.buttonText.today + "</button>\
                     <button class=\"wc-prev\">" + options.buttonText.lastWeek + "</button>\
                     <button class=\"wc-next\">" + options.buttonText.nextWeek + "</button>\
@@ -1292,11 +1300,11 @@
       getter: ['getTimeslotTimes', 'getData', 'formatDate', 'formatTime'],
       defaults: {
          date: new Date(),
-         timeFormat : "h:i a",
+         timeFormat : "H:i",
          dateFormat : "d M Y",
          use24Hour : true,
          daysToShow : 7,
-         firstDayOfWeek : 0, // 0 = Sunday, 1 = Monday, 2 = Tuesday, ... , 6 = Saturday
+         firstDayOfWeek : new Date().getDay(),
          useShortDayNames: false,
          timeSeparator : " a ",
          startParam : "de",

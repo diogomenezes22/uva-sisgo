@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 	<head>
 	    <meta charset="utf-8">
 	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -42,7 +42,7 @@
 						<tr>
 							<td>${tratamento.id}</td>
 							<td>${tratamento.nome}</td>
-							<td>${tratamento.valor}</td>						
+							<td><fmt:formatNumber type="number" minFractionDigits="2" value="${tratamento.valor}" /></td>						
 							<td class="acao">
 								<form class="editar" action="${rootPath}/tratamento/form/${tratamento.id}" method="get"><input type="image" src="${rootPath}/resources/images/editar.gif" title="Editar Tratamento"></form>
 								<form class="excluir" action="${rootPath}/tratamento/excluir/${tratamento.id}" method="get"><input type="image" src="${rootPath}/resources/images/excluir.gif" title="Excluir Tratamento"></form>
