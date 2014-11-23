@@ -36,6 +36,7 @@ $(document).ready(function() {
          var dentistField = $dialogContent.find("input[name='dentist']");
          var dentistIdField = $dialogContent.find("input[name='dentistId']");
          var obsField = $dialogContent.find("textarea[name='obs']");
+         clearScheduledBy($dialogContent);
 
          $dialogContent.dialog({
             modal: true,
@@ -105,6 +106,8 @@ $(document).ready(function() {
             return;
          }
 
+         var consultation = loadConsultation(calEvent.id)
+         
          var $dialogContent = $("#formConsulta");
          resetForm($dialogContent);
          var startField = $dialogContent.find("select[name='start']").val(calEvent.start);
@@ -115,6 +118,7 @@ $(document).ready(function() {
          var dentistIdField = $dialogContent.find("input[name='dentistId']").val(calEvent.dentistId);
          var obsField = $dialogContent.find("textarea[name='obs']");
          obsField.val(calEvent.obs);
+         showScheduledBy($dialogContent, consultation);
 
          $dialogContent.dialog({
             modal: true,
@@ -202,16 +206,10 @@ $(document).ready(function() {
          $(window).resize().resize(); //fixes a bug in modal overlay size ??
 
       },
-      eventMouseover : function(calEvent, $event) {
-      },
-      eventMouseout : function(calEvent, $event) {
-      },
-      noEvents : function() {
-
-      },
       data : function(start, end, callback) {
          callback(getEventData());
       }
+                  
    });
 
    function resetForm($dialogContent) {
@@ -295,6 +293,7 @@ $(document).ready(function() {
 
    });
    
+	$("<div id=\"mouseOverMessage\" class=\"ui-corner-all\"></div>").prependTo($("body"));   
    
 });
 
@@ -324,6 +323,36 @@ function updateConsultation(calEvent) {
 			$calendar.weekCalendar("removeUnsavedEvents");
 		}
 	});	
+}
+
+function loadConsultation(consultationId) {
+
+	var consultation;
+	
+	$.ajax({
+		async: false,
+		url: "/sisgo/agenda/carregar-consulta/" + consultationId,
+		type: "get",
+		dataType: "json",
+		error: function(jqXHR, textStatus, errorThrown) {
+			alert("Erro ao carregar consulta!");
+		},
+		success: function(consultationJson) {
+			consultation = consultationJson;
+		}
+	});	
+	
+	return consultation;
+}
+
+function showScheduledBy($dialogContent, consultation) {
+	$dialogContent.find("#scheduledBy").html(consultation.usuario.nome);
+	$dialogContent.find(".scheduledByItemList").fadeIn();
+}
+
+function clearScheduledBy($dialogContent) {
+	$dialogContent.find("#scheduledBy").html("");
+	$dialogContent.find(".scheduledByItemList").hide();
 }
 
 function formatDate(date) {

@@ -11,6 +11,7 @@ import sisgo.model.Consulta;
 import sisgo.model.Dentista;
 import sisgo.model.Paciente;
 import sisgo.util.Permissao;
+import sisgo.util.SessaoUsuario;
 import sisgo.util.TransformadorConsultaVO;
 import sisgo.util.TransformadorSugestaoDentista;
 import sisgo.util.TransformadorSugestaoPaciente;
@@ -26,6 +27,8 @@ public class AgendaController {
 
 	@Inject
 	private Result result;
+	@Inject
+	private SessaoUsuario sessaoUsuario;	
 	@Inject
 	private ConsultaDao consultaDao;
 	@Inject
@@ -47,7 +50,13 @@ public class AgendaController {
 	public void carregarConsultas() {
 		Collection<Consulta> consultas = consultaDao.listar();
 		result.use(Results.json()).withoutRoot().from(transformadorConsultaVO.transformar(consultas)).serialize();
-	}	
+	}
+	
+	@Path("/carregar-consulta/{consulta.id}")
+	public void carregarConsultas(Consulta consulta) {
+		consulta = consultaDao.carregar(consulta.getId());
+		result.use(Results.json()).withoutRoot().from(consulta).include("usuario").serialize();
+	}		
 	
 	@Path("/carregar-pacientes")
 	public void carregarPacientes() {
@@ -63,12 +72,14 @@ public class AgendaController {
 
 	@Path("/salvar")
 	public void salvar(Consulta consulta) {
+		prepareSave(consulta);
 		consultaDao.salvar(consulta);
 		result.use(Results.json()).withoutRoot().from(consulta.getId()).serialize();
 	}
-	
+
 	@Path("/atualizar")
 	public void atualizar(Consulta consulta) {
+		prepareSave(consulta);
 		boolean atualizado = consultaDao.atualizar(consulta);
 		result.use(Results.json()).withoutRoot().from(atualizado).serialize();
 	}	
@@ -77,6 +88,10 @@ public class AgendaController {
 	public void excluir(Consulta consulta) {
 		consulta = consultaDao.carregar(consulta.getId());
 		result.use(Results.json()).withoutRoot().from(consultaDao.excluir(consulta)).serialize();
+	}	
+	
+	private void prepareSave(Consulta consulta) {
+		consulta.setUsuario(sessaoUsuario.getUsuario());		
 	}	
 
 }

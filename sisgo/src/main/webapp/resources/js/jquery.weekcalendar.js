@@ -285,6 +285,7 @@
             		<div class=\"wc-menu\"><a href=\"/sisgo/funcionario/listar\">Funcionarios</a></div>\
             		<div class=\"wc-menu\"><a href=\"/sisgo/tratamento/listar\">Tratamentos</a></div>\
             		<div class=\"wc-menu\">Relatorios</div>\
+            		<div class=\"wc-menu\"><a href=\"/sisgo/deslogar\">Deslogar</a></div>\
                     <button class=\"wc-today\">" + options.buttonText.today + "</button>\
                     <button class=\"wc-prev\">" + options.buttonText.lastWeek + "</button>\
                     <button class=\"wc-next\">" + options.buttonText.nextWeek + "</button>\
