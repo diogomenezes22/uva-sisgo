@@ -6,6 +6,8 @@ import javax.inject.Inject;
 
 import sisgo.dao.ConsultaDao;
 import sisgo.model.Consulta;
+import sisgo.util.Permissao;
+import sisgo.util.ValidaSessao;
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Result;
@@ -18,6 +20,7 @@ public class IndexController {
 	@Inject
 	private ConsultaDao consultaDao;	
 	
+	@ValidaSessao(Permissao.FUNCIONARIO)
 	@Path("/principal")
 	public void index() {
 		Collection<Consulta> consultasDoDia = consultaDao.listarConsultasDoDia();

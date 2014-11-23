@@ -22,8 +22,9 @@
 		<input type="hidden" id="pagina" value="paginaPrincipal">
 
 		<div class="container">
-			<div class="template">
+			<div class="template">				
 				<div id="bemVindo">
+					<div class="mensagemErro">${erro}</div>
 					<p class="lead">Olá, ${sessaoUsuario.usuario.nome}!</p>
 					<h1>Bem vindo ao sistema odontológico SISGO</h1>
 					<p class="lead">

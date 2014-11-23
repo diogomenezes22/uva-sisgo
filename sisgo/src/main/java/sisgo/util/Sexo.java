@@ -1,13 +1,13 @@
 package sisgo.util;
 
-public enum ESexo {
+public enum Sexo {
 
 	MASCULINO('M', 77), FEMININO('F', 70);
 	
 	private char id;
 	private int asciiCode;
 	
-	private ESexo(char id, int asciiCode) {
+	private Sexo(char id, int asciiCode) {
 		this.id = id;
 		this.asciiCode = asciiCode;
 	}

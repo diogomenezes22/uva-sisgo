@@ -8,6 +8,8 @@ import sisgo.dao.AnamneseDao;
 import sisgo.dao.PacienteDao;
 import sisgo.model.Anamnese;
 import sisgo.model.Paciente;
+import sisgo.util.Permissao;
+import sisgo.util.ValidaSessao;
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Result;
@@ -26,13 +28,14 @@ public class AnamneseController {
 
 	public void form() {}			
 
-	
+	@ValidaSessao(Permissao.DENTISTA)
 	@Path("/paciente/{paciente.id}/form")
 	public void form(Paciente paciente) {
 		result.include("paciente", pacienteDao.carregar(paciente.getId()));
 		result.redirectTo(this).form();
 	}
 	
+	@ValidaSessao(Permissao.DENTISTA)
 	@Path("/form/{anamnese.id}")
 	public void form(Anamnese anamnese) {
 		anamnese = anamneseDao.carregar(anamnese.getId());
@@ -41,6 +44,7 @@ public class AnamneseController {
 		result.redirectTo(this).form();
 	}	
 	
+	@ValidaSessao(Permissao.DENTISTA)
 	@Path("/listar/{paciente.id}")
 	public void listar(Paciente paciente) {
 		result.include("paciente", pacienteDao.carregar(paciente.getId()));

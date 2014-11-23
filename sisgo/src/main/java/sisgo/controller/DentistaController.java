@@ -4,6 +4,8 @@ import javax.inject.Inject;
 
 import sisgo.dao.DentistaDao;
 import sisgo.model.Dentista;
+import sisgo.util.Permissao;
+import sisgo.util.ValidaSessao;
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Result;
@@ -18,14 +20,17 @@ public class DentistaController {
 	private DentistaDao dentistaDao;	
 
 	
+	@ValidaSessao(Permissao.ADMIN)
 	@Path("/listar")
 	public void listar() {
 		result.include("dentistas", dentistaDao.listar());
 	}	
 	
+	@ValidaSessao(Permissao.ADMIN)
 	@Path("/form")
 	public void form() {}
 	
+	@ValidaSessao(Permissao.ADMIN)
 	@Path("/form/{id}")
 	public void editar(Integer id) {
 		result.include("dentista", dentistaDao.carregar(id));
@@ -39,6 +44,7 @@ public class DentistaController {
 		result.redirectTo(this).listar();
 	}
 
+	@ValidaSessao(Permissao.ADMIN)
 	@Path("/excluir/{id}")
 	public void excluir(Integer id) {
 		Dentista dentista = dentistaDao.carregar(id);

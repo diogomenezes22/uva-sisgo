@@ -5,6 +5,8 @@ import javax.inject.Inject;
 import sisgo.dao.EstadoCivilDao;
 import sisgo.dao.PacienteDao;
 import sisgo.model.Paciente;
+import sisgo.util.Permissao;
+import sisgo.util.ValidaSessao;
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Result;
@@ -21,16 +23,19 @@ public class PacienteController {
 	private EstadoCivilDao estadoCivilDao;	
 
 	
+	@ValidaSessao(Permissao.FUNCIONARIO)
 	@Path("/listar")
 	public void listar() {
 		result.include("pacientes", pacienteDao.listar());
 	}	
 	
+	@ValidaSessao(Permissao.FUNCIONARIO)
 	@Path("/form")
 	public void form() {
 		result.include("estadosCivis", estadoCivilDao.listar());
 	}
 	
+	@ValidaSessao(Permissao.FUNCIONARIO)
 	@Path("/form/{id}")
 	public void editar(Integer id) {
 		result.include("paciente", pacienteDao.carregar(id));
@@ -44,6 +49,7 @@ public class PacienteController {
 		result.redirectTo(this).listar();
 	}
 
+	@ValidaSessao(Permissao.FUNCIONARIO)
 	@Path("/excluir/{id}")
 	public void excluir(Integer id) {
 		Paciente paciente = pacienteDao.carregar(id);
