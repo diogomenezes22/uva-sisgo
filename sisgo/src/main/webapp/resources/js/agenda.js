@@ -190,7 +190,7 @@ $(document).ready(function() {
 
                },
                Procedimentos: function() {
-            	   alert("Procedimento");
+            	   location.href="/sisgo/procedimento-consulta/" + calEvent.id + "/listar";
                }
             }
          }).show();
