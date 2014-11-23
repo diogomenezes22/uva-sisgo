@@ -1,3 +1,6 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
+
 <!DOCTYPE html>
 <html lang="pt-br">
 	<head>
@@ -20,8 +23,20 @@
 
 		<div class="container">
 			<div class="template">
-				<h1>Bem vindo ao sistema odontológico SISGO</h1>
-				<p class="lead">Hoje temos X consultas marcadas!</p>
+				<div id="bemVindo">
+					<p class="lead">Olá, ${sessaoUsuario.usuario.nome}!</p>
+					<h1>Bem vindo ao sistema odontológico SISGO</h1>
+					<p class="lead">
+						<c:choose>
+							<c:when test="${empty consultasDoDia}">
+								Nao temos nenhuma consulta marcada para hoje!
+							</c:when>
+							<c:otherwise>
+								Hoje temos ${fn:length(consultasDoDia)} consultas marcadas!	
+							</c:otherwise>
+						</c:choose>						
+					</p>
+				</div>
 			</div>
     	</div>
 
