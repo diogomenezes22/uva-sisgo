@@ -4,6 +4,8 @@ import javax.inject.Inject;
 
 import sisgo.dao.TratamentoDao;
 import sisgo.model.Tratamento;
+import sisgo.util.Permissao;
+import sisgo.util.ValidaSessao;
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Result;
@@ -18,14 +20,17 @@ public class TratamentoController {
 	private TratamentoDao tratamentoDao;
 
 	
+	@ValidaSessao(Permissao.ADMIN)
 	@Path("/listar")
 	public void listar() {
 		result.include("tratamentos", tratamentoDao.listar());
 	}	
 	
+	@ValidaSessao(Permissao.ADMIN)
 	@Path("/form")
 	public void form() {}
 	
+	@ValidaSessao(Permissao.ADMIN)
 	@Path("/form/{id}")
 	public void editar(Integer id) {
 		result.include("tratamento", tratamentoDao.carregar(id));
@@ -39,6 +44,7 @@ public class TratamentoController {
 		result.redirectTo(this).listar();
 	}
 
+	@ValidaSessao(Permissao.ADMIN)
 	@Path("/excluir/{id}")
 	public void excluir(Integer id) {
 		Tratamento tratamento = tratamentoDao.carregar(id);

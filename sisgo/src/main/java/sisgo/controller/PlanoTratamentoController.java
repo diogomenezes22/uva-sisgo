@@ -8,6 +8,8 @@ import sisgo.dao.TratamentoDao;
 import sisgo.model.Paciente;
 import sisgo.model.PlanoTratamento;
 import sisgo.model.Procedimento;
+import sisgo.util.Permissao;
+import sisgo.util.ValidaSessao;
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Result;
@@ -30,13 +32,14 @@ public class PlanoTratamentoController {
 		result.include("tratamentos", tratamentoDao.listar());
 	}			
 
-	
+	@ValidaSessao(Permissao.DENTISTA)	
 	@Path("/paciente/{paciente.id}/form")
 	public void form(Paciente paciente) {
 		result.include("paciente", pacienteDao.carregar(paciente.getId()));
 		result.redirectTo(this).form();
 	}
 	
+	@ValidaSessao(Permissao.DENTISTA)
 	@Path("/form/{planoTratamento.id}")
 	public void form(PlanoTratamento planoTratamento) {
 		planoTratamento = planoTratamentoDao.carregar(planoTratamento.getId());
@@ -45,6 +48,7 @@ public class PlanoTratamentoController {
 		result.redirectTo(this).form();
 	}	
 	
+	@ValidaSessao(Permissao.DENTISTA)
 	@Path("/listar/{paciente.id}")
 	public void listar(Paciente paciente) {
 		result.include("paciente", pacienteDao.carregar(paciente.getId()));
@@ -59,6 +63,7 @@ public class PlanoTratamentoController {
 		result.redirectTo(this).listar(planoTratamento.getPaciente());
 	}
 	
+	@ValidaSessao(Permissao.DENTISTA)
 	@Path("/excluir/{id}")
 	public void excluir(Integer id) {
 		PlanoTratamento planoTratamento = planoTratamentoDao.carregar(id);

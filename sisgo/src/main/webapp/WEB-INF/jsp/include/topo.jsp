@@ -18,7 +18,8 @@
 				<li class="pagina paginaDentista"><a href="${rootPath}/dentista/listar">Dentistas</a></li>
 				<li class="pagina paginaFuncionario"><a href="${rootPath}/funcionario/listar">Funcionarios</a></li>
 				<li class="pagina paginaTratamento"><a href="${rootPath}/tratamento/listar">Tratamentos</a></li>
-				<li class="pagina paginaTratamento"><a href="${rootPath}/tratamento/listar">Relatorios</a></li>
+				<li class="pagina paginaRelatorios"><a href="${rootPath}/tratamento/listar">Relatorios</a></li>
+				<li><a href="${rootPath}/deslogar">Deslogar</a></li>
 			</ul>
 		</div>
 	</div>

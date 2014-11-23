@@ -10,9 +10,11 @@ import sisgo.dao.PacienteDao;
 import sisgo.model.Consulta;
 import sisgo.model.Dentista;
 import sisgo.model.Paciente;
+import sisgo.util.Permissao;
 import sisgo.util.TransformadorConsultaVO;
 import sisgo.util.TransformadorSugestaoDentista;
 import sisgo.util.TransformadorSugestaoPaciente;
+import sisgo.util.ValidaSessao;
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Result;
@@ -37,6 +39,7 @@ public class AgendaController {
 	@Inject
 	private TransformadorSugestaoDentista transformadorSugestaoDentista;	
 	
+	@ValidaSessao(Permissao.FUNCIONARIO)
 	@Path("/")
 	public void agenda() {}
 
