@@ -76,3 +76,7 @@ ul.formatted li {
 ol.formatted li {
 	list-style-type: decimal;
 }
+
+.scheduledByItemList {
+	display: none;
+}

@@ -59,17 +59,20 @@
 						<label for="end">Ate: </label><select id="end" name="end"></select>
 					</li>					
 					<li>
-						<label for="patient">Paciente: </label><input type="text" id="patient" name="patient" />
+						<label for="patientId">Paciente: </label><input type="text" id="patient" name="patient" />
 						<input type="hidden" id="patientId" name="patientId">
 						<div id="patientAutocompleteSuggestion"></div>
 					</li>
 					<li>
-						<label for="dentista">Dentista: </label><input type="text" id="dentist" name="dentist" />
+						<label for="dentistId">Dentista: </label><input type="text" id="dentist" name="dentist" />
 						<input type="hidden" id="dentistId" name="dentistId">
 						<div id="patientAutocompleteSuggestion"></div>
 					</li>
 					<li>
 						<label for="obs">Obs: </label><textarea id="obs" name="obs"></textarea>
+					</li>
+					<li class="scheduledByItemList">
+						<label for="scheduledBy">Agendado por: </label><span id="scheduledBy"></span>
 					</li>					
 				</ul>
 			</form>
