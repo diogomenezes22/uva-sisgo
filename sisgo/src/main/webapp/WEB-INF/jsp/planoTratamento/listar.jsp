@@ -48,7 +48,7 @@
 							<td>${fn:length(planoTratamento.procedimentos)}</td>
 							<td><fmt:formatDate value="${planoTratamento.dataConclusao}" pattern="dd/MM/yyyy" /></td>
 							<td><fmt:formatNumber pattern="#,##0.00#" value="${planoTratamento.valorTotal}" /></td>							
-							<td>${planoTratamento.emAberto}</td>				
+							<td><c:choose><c:when test="${planoTratamento.emAberto}">Sim</c:when><c:otherwise>Nao</c:otherwise></c:choose></td>				
 							<td class="acao">
 								<form class="editar" action="${rootPath}/plano-tratamento/form/${planoTratamento.id}" method="get"><input type="image" src="${rootPath}/resources/images/editar.gif" title="Editar Plano"></form>								
 								<form class="excluir" action="${rootPath}/plano-tratamento/excluir/${planoTratamento.id}" method="get"><input type="image" src="${rootPath}/resources/images/excluir.gif" title="Excluir Plano"></form>
