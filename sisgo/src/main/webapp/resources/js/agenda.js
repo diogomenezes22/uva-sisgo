@@ -147,7 +147,7 @@ $(document).ready(function() {
 							alert("Erro ao atualizar consulta!");
 						},
 						success: function(updated) {
-							if(updated) {
+							if(updated == "true") {
 								calEvent.start = new Date(startField.val());
 								calEvent.end = new Date(endField.val());
 								calEvent.patient = patientField.val();
@@ -179,11 +179,12 @@ $(document).ready(function() {
 								alert("Erro ao excluir consulta!");
 							},
 							success: function(deleted) {
-								if(deleted) {
+								if(deleted == "true") {
+									alert("teste")
 									$calendar.weekCalendar("removeEvent", calEvent.id);								
 								}
 								else {
-									alert("Erro ao excluir consulta!");
+									alert("Nao e possivel excluir esta consulta!");
 								}
 							},
 							complete: function() {
@@ -315,7 +316,7 @@ function updateConsultation(calEvent) {
 			alert("Erro ao atualizar consulta!");
 		},
 		success: function(updated) {
-			if(!updated) {			
+			if(updated == "false") {			
 				alert("Erro ao atualizar consulta!");
 			}
 		},

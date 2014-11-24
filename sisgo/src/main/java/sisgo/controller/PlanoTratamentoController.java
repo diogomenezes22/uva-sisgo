@@ -68,8 +68,11 @@ public class PlanoTratamentoController {
 	public void excluir(Integer id) {
 		PlanoTratamento planoTratamento = planoTratamentoDao.carregar(id);
 		Paciente paciente = planoTratamento.getPaciente();
-		planoTratamentoDao.excluir(planoTratamento);
-		result.include("mensagem", "Plano de Tratamento excluído com sucesso!");
+		boolean excluido = planoTratamentoDao.excluir(planoTratamento);
+		if(excluido)
+			result.include("mensagem", "Plano de Tratamento excluído com sucesso!");
+		else
+			result.include("erro", "Nao e possivel excluir este plano de tratamento!");
 		result.redirectTo(this).listar(paciente);
 	}	
 	

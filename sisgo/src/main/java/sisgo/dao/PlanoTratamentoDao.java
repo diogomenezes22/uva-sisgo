@@ -5,6 +5,7 @@ import java.util.Collection;
 import javax.inject.Inject;
 
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
@@ -30,21 +31,29 @@ public class PlanoTratamentoDao {
 	
 	public void salvar(PlanoTratamento planoTratamento) {
 		
+		Transaction tx = session.beginTransaction();
 		try {
 			session.merge(planoTratamento);
+			tx.commit();
 		}
 		catch(Exception e) {
 			e.printStackTrace();
+			tx.rollback();
 		}
 	}
 	
-	public void excluir(PlanoTratamento planoTratamento) {
+	public boolean excluir(PlanoTratamento planoTratamento) {
 		
+		Transaction tx = session.beginTransaction();
 		try {
 			session.delete(planoTratamento);
+			tx.commit();
+			return true;
 		}
 		catch(Exception e) {
 			e.printStackTrace();
+			tx.rollback();
+			return false;
 		}
 	}	
 }

@@ -6,6 +6,7 @@ import java.util.Collection;
 import javax.inject.Inject;
 
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
@@ -42,34 +43,46 @@ public class ConsultaDao {
 	
 	public void salvar(Consulta consulta) {
 		
+		Transaction tx = session.beginTransaction();
+		
 		try {
 			session.save(consulta);
+			tx.commit();
 		}
 		catch(Exception e) {
 			e.printStackTrace();
+			tx.rollback();
 		}
 	}
 	
 	public boolean atualizar(Consulta consulta) {
 		
+		Transaction tx = session.beginTransaction();
+		
 		try {
 			session.update(consulta);
+			tx.commit();
 			return true;
 		}
 		catch(Exception e) {
 			e.printStackTrace();
+			tx.rollback();
 			return false;
 		}
 	}	
 	
 	public boolean excluir(Consulta consulta) {
 		
+		Transaction tx = session.beginTransaction();
+		
 		try {
 			session.delete(consulta);
+			tx.commit();
 			return true;
 		}
 		catch(Exception e) {
 			e.printStackTrace();
+			tx.rollback();
 			return false;
 		}
 	}

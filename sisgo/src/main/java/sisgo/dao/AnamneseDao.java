@@ -5,6 +5,7 @@ import java.util.Collection;
 import javax.inject.Inject;
 
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
@@ -30,21 +31,28 @@ public class AnamneseDao {
 	
 	public void salvar(Anamnese anamnese) {
 		
+		Transaction tx = session.beginTransaction();
+		
 		try {
 			session.merge(anamnese);
+			tx.commit();
 		}
 		catch(Exception e) {
 			e.printStackTrace();
+			tx.rollback();
 		}
 	}
 	
 	public void excluir(Anamnese anamnese) {
 		
+		Transaction tx = session.beginTransaction();
 		try {
 			session.delete(anamnese);
+			tx.commit();
 		}
 		catch(Exception e) {
 			e.printStackTrace();
+			tx.rollback();
 		}
 	}	
 }

@@ -5,6 +5,7 @@ import java.util.Collection;
 import javax.inject.Inject;
 
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
 import sisgo.model.Consulta;
@@ -28,21 +29,29 @@ public class ProcedimentoConsultaDao {
 	
 	public void salvar(ProcedimentoConsulta procedimentoConsulta) {
 		
+		Transaction tx = session.beginTransaction();
 		try {
 			session.merge(procedimentoConsulta);
+			tx.commit();
 		}
 		catch(Exception e) {
 			e.printStackTrace();
+			tx.rollback();
 		}
 	}
 	
-	public void excluir(ProcedimentoConsulta procedimentoConsulta) {
+	public boolean excluir(ProcedimentoConsulta procedimentoConsulta) {
 		
+		Transaction tx = session.beginTransaction();
 		try {
 			session.delete(procedimentoConsulta);
+			tx.commit();
+			return true;
 		}
 		catch(Exception e) {
 			e.printStackTrace();
+			tx.rollback();
+			return false;
 		}
 	}	
 }
