@@ -32,6 +32,9 @@
 							<c:when test="${empty consultasDoDia}">
 								Nao temos nenhuma consulta marcada para hoje!
 							</c:when>
+							<c:when test="${fn:length(consultasDoDia) == 1}">
+								Hoje temos 1 consulta marcada!
+							</c:when>							
 							<c:otherwise>
 								Hoje temos ${fn:length(consultasDoDia)} consultas marcadas!	
 							</c:otherwise>

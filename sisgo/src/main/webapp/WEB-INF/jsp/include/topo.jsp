@@ -18,7 +18,13 @@
 				<li class="pagina paginaDentista"><a href="${rootPath}/dentista/listar">Dentistas</a></li>
 				<li class="pagina paginaFuncionario"><a href="${rootPath}/funcionario/listar">Funcionarios</a></li>
 				<li class="pagina paginaTratamento"><a href="${rootPath}/tratamento/listar">Tratamentos</a></li>
-				<li class="pagina paginaRelatorios"><a href="${rootPath}/tratamento/listar">Relatorios</a></li>
+				<li class="dropdown pagina paginaRelatorios">
+          			<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Relatorios <span class="caret"></span></a>
+					<ul class="dropdown-menu" role="menu">
+            			<li><a href="${rootPath}/relatorio/consultas-mensais">Consultas Mensais</a></li>
+            			<li><a href="${rootPath}/relatorio/tratamentos-realizados">Tratamentos Realizados</a></li>
+          			</ul>
+        		</li>          			
 				<li><a href="${rootPath}/deslogar">Deslogar</a></li>
 			</ul>
 		</div>

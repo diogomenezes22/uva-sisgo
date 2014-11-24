@@ -29,3 +29,22 @@ function aplicarDataTable(table, urlButton, textButton) {
 		}
 	});
 }
+
+function replaceAll(str, de, para){
+    var pos = str.indexOf(de);
+    while (pos > -1){
+		str = str.replace(de, para);
+		pos = str.indexOf(de);
+	}
+    return (str);
+}
+
+function alterarFormatoJson(json) {
+	var jsonAlterado = "[";
+	$.each(json, function(chave, valor) {
+		jsonAlterado += "[" + "\"" + chave + "\"," + valor + "]"; 
+	});
+	jsonAlterado += "]";
+	jsonAlterado = replaceAll(jsonAlterado, "][", "],[");
+	return jsonAlterado;
+}
