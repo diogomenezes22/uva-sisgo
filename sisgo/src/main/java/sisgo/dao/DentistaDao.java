@@ -5,6 +5,7 @@ import java.util.Collection;
 import javax.inject.Inject;
 
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.criterion.Order;
 
 import sisgo.model.Dentista;
@@ -25,21 +26,29 @@ public class DentistaDao {
 	
 	public void salvar(Dentista dentista) {
 		
+		Transaction tx = session.beginTransaction();
 		try {
 			session.saveOrUpdate(dentista);
+			tx.commit();
 		}
 		catch(Exception e) {
 			e.printStackTrace();
+			tx.rollback();
 		}
 	}
 	
-	public void excluir(Dentista dentista) {
+	public boolean excluir(Dentista dentista) {
 		
+		Transaction tx = session.beginTransaction();
 		try {
 			session.delete(dentista);
+			tx.commit();
+			return true;
 		}
 		catch(Exception e) {
 			e.printStackTrace();
+			tx.rollback();
+			return false;
 		}
 	}	
 }

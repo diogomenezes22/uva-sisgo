@@ -30,6 +30,7 @@
 				<h3>Listagem de Paciente</h3>
 			</div>
 			<div class="mensagemSucesso">${mensagem}</div>
+			<div class="mensagemErro">${erro}</div>
 			<table id="tabelaPaciente" class="table table-striped table-bordered dataTable no-footer">
 				<thead>
 					<th>Codigo</th>

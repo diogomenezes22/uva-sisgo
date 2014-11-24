@@ -5,6 +5,7 @@ import java.util.Collection;
 import javax.inject.Inject;
 
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.criterion.Order;
 
 import sisgo.model.Paciente;
@@ -24,22 +25,30 @@ public class PacienteDao {
 	}
 	
 	public void salvar(Paciente paciente) {
-		
+	
+		Transaction tx = session.beginTransaction();
 		try {
 			session.saveOrUpdate(paciente);
+			tx.commit();
 		}
 		catch(Exception e) {
 			e.printStackTrace();
+			tx.rollback();
 		}
 	}
 	
-	public void excluir(Paciente paciente) {
+	public boolean excluir(Paciente paciente) {
 		
+		Transaction tx = session.beginTransaction();
 		try {
 			session.delete(paciente);
+			tx.commit();
+			return true;
 		}
 		catch(Exception e) {
 			e.printStackTrace();
+			tx.rollback();
+			return false;
 		}
 	}	
 }

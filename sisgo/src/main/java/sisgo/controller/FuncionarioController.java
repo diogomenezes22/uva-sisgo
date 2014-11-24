@@ -48,8 +48,11 @@ public class FuncionarioController {
 	@Path("/excluir/{id}")
 	public void excluir(Integer id) {
 		Funcionario funcionario = funcionarioDao.carregar(id);
-		funcionarioDao.excluir(funcionario);
-		result.include("mensagem", "Funcionario excluído com sucesso!");
+		boolean excluido = funcionarioDao.excluir(funcionario);
+		if(excluido)
+			result.include("mensagem", "Funcionario excluído com sucesso!");
+		else
+			result.include("erro", "Nao e possivel excluir este funcionario!");
 		result.redirectTo(this).listar();
 	}
 	

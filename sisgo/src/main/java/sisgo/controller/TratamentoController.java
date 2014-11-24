@@ -48,8 +48,11 @@ public class TratamentoController {
 	@Path("/excluir/{id}")
 	public void excluir(Integer id) {
 		Tratamento tratamento = tratamentoDao.carregar(id);
-		tratamentoDao.excluir(tratamento);
-		result.include("mensagem", "Tratamento excluído com sucesso!");
+		boolean excluido = tratamentoDao.excluir(tratamento);
+		if(excluido)
+			result.include("mensagem", "Tratamento excluído com sucesso!");
+		else
+			result.include("erro", "Nao e possivel excluir este tratamento!");
 		result.redirectTo(this).listar();
 	}
 	

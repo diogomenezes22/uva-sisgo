@@ -30,6 +30,7 @@
 				<h3>Listagem de Funcionario</h3>
 			</div>
 			<div class="mensagemSucesso">${mensagem}</div>
+			<div class="mensagemErro">${erro}</div>
 			<table id="tabelaFuncionario" class="table table-striped table-bordered dataTable no-footer">
 				<thead>
 					<th>Codigo</th>

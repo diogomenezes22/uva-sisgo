@@ -11,6 +11,7 @@
 		<property name="connection.url">jdbc:postgresql://localhost:5432/sisgo</property>
 		<property name="connection.username">sisgo</property>
 		<property name="connection.password">123456</property>
+		<property name="hibernate.temp.use_jdbc_metadata_defaults">false</property> 
 
 		<property name="hibernate.show_sql">true</property>
 		<property name="hibernate.format_sql">true</property>
