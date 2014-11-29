@@ -77,7 +77,7 @@ public class RelatorioConsultasMensaisController {
 		for (MesConsultasMensais mesConsultasMensais : meses) {
 			Collections.sort(mesConsultasMensais.getConsultas(),new Comparator<Consulta>(){
 				public int compare(Consulta c1, Consulta c2) {					
-					return c1.getDataFinal().compareTo(c2.getDataInicial());
+					return c1.getDataInicial().compareTo(c2.getDataInicial());
 				}});			
 		}
 	}

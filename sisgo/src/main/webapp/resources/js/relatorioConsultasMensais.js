@@ -24,8 +24,7 @@ $(function () {
 
 	});
 	
-	$(document).on("click", "#gerarRelatorioAnalitico", function(event) {
-		
+	$(document).on("click", "#gerarRelatorioAnalitico", function(event) {		
 		window.open("/sisgo/relatorio/analitico/consultas-mensais/" + $("#ano").val() + "/gerar","_blank");
 	});	
 });
