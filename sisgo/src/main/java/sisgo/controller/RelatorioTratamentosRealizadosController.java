@@ -1,18 +1,19 @@
 package sisgo.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Set;
 
 import javax.inject.Inject;
 
-import sisgo.dao.ConsultaDao;
+import sisgo.dao.PlanoTratamentoDao;
 import sisgo.dao.ProcedimentoDao;
-import sisgo.model.Consulta;
+import sisgo.model.PlanoTratamento;
 import sisgo.model.Procedimento;
-import sisgo.util.Mes;
 import sisgo.util.Permissao;
 import sisgo.util.ValidaSessao;
 import br.com.caelum.vraptor.Controller;
@@ -20,71 +21,53 @@ import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.view.Results;
 
-@Path("/relatorio")
+@Path("")
 @Controller
-public class RelatorioController {
+public class RelatorioTratamentosRealizadosController {
 
 	@Inject
 	private Result result;
 	@Inject
-	private ConsultaDao consultaDao;
+	private ProcedimentoDao procedimentoDao;
 	@Inject
-	private ProcedimentoDao procedimentoDao;		
+	private PlanoTratamentoDao planoTratamentoDao;		
 
 	
 	@ValidaSessao(Permissao.ADMIN)
-	@Path("/tratamentos-realizados")
-	public void tratamentosRealizados() {}
+	@Path("/relatorio/tratamentos-realizados")
+	public void filtro() {
+		Collection<PlanoTratamento> planos = planoTratamentoDao.listar();
+		Collection<String> anosDistintos = obterAnosDistintos(planos);
+		result.include("anos", anosDistintos);		
+	}
 	
 	@ValidaSessao(Permissao.ADMIN)
-	@Path("/tratamentos-realizados/gerar")
-	public void gerarTratamentosRealizados() {
+	@Path("/relatorio/sintetico/tratamentos-realizados/{ano}/gerar")
+	public void relatorioSintetico(Integer ano) {
 		Collection<Procedimento> procedimentos = procedimentoDao.carregar();
 		Map<String, Integer> mapaTratamentos = agruparTratamentos(procedimentos);
 		Map<String, Double> mapaPorcentagemTratamentos = calcularPorcentagemTratametos(mapaTratamentos);
 		result.use(Results.json()).withoutRoot().from(mapaPorcentagemTratamentos).serialize();
-	}	
+	}
 	
 	@ValidaSessao(Permissao.ADMIN)
-	@Path("/consultas-mensais")
-	public void consultasMensais() {}
-	
-	@ValidaSessao(Permissao.ADMIN)
-	@Path("/consultas-mensais/gerar")
-	public void gerarConsultasMensais() {
-		Collection<Consulta> consultas = consultaDao.listar();
-		Map<Integer, Integer> mapaConsultasPorNumeroMes = construirMapa();
-		agruparConsultas(mapaConsultasPorNumeroMes, consultas);
-		Map<String, Integer> mapaConsultasPorMes = formatarMapaPorNomeDoMes(mapaConsultasPorNumeroMes);
-		result.use(Results.json()).withoutRoot().from(mapaConsultasPorMes).serialize();
+	@Path("/relatorio/analitico/tratamentos-realizados/{ano}/gerar")
+	public void relatorioAnalitico(Integer ano) {
+		Collection<Procedimento> procedimentos = procedimentoDao.carregar();
+		Map<String, Integer> mapaTratamentos = agruparTratamentos(procedimentos);
+		Map<String, Double> mapaPorcentagemTratamentos = calcularPorcentagemTratametos(mapaTratamentos);
+		result.use(Results.json()).withoutRoot().from(mapaPorcentagemTratamentos).serialize();
 	}		
 	
-	private Map<String, Integer> formatarMapaPorNomeDoMes(Map<Integer, Integer> mapaConsultasPorNumeroMes) {
+
+	private Collection<String> obterAnosDistintos(Collection<PlanoTratamento> planos) {
 		
-		Map<String, Integer> mapaConsultasPorMes = new LinkedHashMap<String, Integer>();
-		for (Entry<Integer, Integer> registro : mapaConsultasPorNumeroMes.entrySet()) {
-			mapaConsultasPorMes.put(Mes.get(registro.getKey()).getNome(), registro.getValue());
-		}
-		return mapaConsultasPorMes;
-	}
-
-	@SuppressWarnings("deprecation")
-	private void agruparConsultas(Map<Integer, Integer> mapaConsultasPorMes, Collection<Consulta> consultas) {
-		
-		for (Consulta consulta : consultas) {
-			Integer numeroMes = consulta.getDataInicial().getMonth();
-			mapaConsultasPorMes.put(numeroMes, mapaConsultasPorMes.get(numeroMes) + 1);
-		}		
-	}
-
-	private Map<Integer, Integer> construirMapa() {
-		Map<Integer, Integer> mapaConsultasPorMes = new HashMap<Integer, Integer>();
-		for (Mes mes : Mes.values()) {
-			mapaConsultasPorMes.put(mes.getNumero(), 0);
-		}
-		return mapaConsultasPorMes;
-	}
-
+		Set<String> anosDistintos = new HashSet<String>();
+		for (PlanoTratamento plano : planos)
+			anosDistintos.add(new SimpleDateFormat("yyyy").format(plano.getDataInicial()));
+		return anosDistintos;
+	}	
+	
 	private Map<String, Double> calcularPorcentagemTratametos(Map<String, Integer> mapaTratamentos) {
 		
 		Map<String, Double> mapaPorcentagemTratamentos = new HashMap<String, Double>();

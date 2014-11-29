@@ -1,0 +1,10 @@
+/* FILTRO */
+
+.divBotaoGerarRelatorioAnalitico {
+	text-align: center;
+}
+
+.botaoGerarRelatorioAnalitico {
+	display: none;
+	width: 250px;
+}

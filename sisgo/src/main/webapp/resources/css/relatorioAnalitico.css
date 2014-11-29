@@ -1,0 +1,52 @@
+/* RELATORIO ANALITICO */
+
+body {
+	padding: 0px;
+}
+
+.logo {
+	float: left;
+	font-size: 40px;
+	margin-left: 10px;
+	margin-top: 5px;
+}
+
+.logo img {
+	width: 50px;
+	height: 45px;
+	vertical-align: sub;	
+}
+
+.nomeRelatorio {
+	float: right;
+	margin-top: 37px;	
+	margin-right: 10px;
+	font-size: 20px;
+	font-style: italic;	
+}
+
+.emissao {
+	float: right;
+	margin-right: 10px;
+}
+
+table {
+	width: 800px;
+	margin: auto;
+}
+
+.linhaAgrupamento {
+	background-color: #000;
+	color: #FFF;
+}
+
+.linhaTh {
+	background-color: #AAA;
+	font-weight: bold;
+}
+
+.total {
+	background-color: #5cb85c;
+	color: #FFF;
+	font-weight: bold;
+}

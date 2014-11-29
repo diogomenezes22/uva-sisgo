@@ -2,25 +2,42 @@ $(function () {
 	
 	var dataRelatorio;
 	
-	$.ajax({
-		async: false,
-		url: "/sisgo/relatorio/consultas-mensais/gerar",
-		type: "post",
-		dataType: "json",
-		error: function(jqXHR, textStatus, errorThrown) {
-			alert("Erro ao gerar relatorio");
-		},
-		success: function(dataRelatorioJson) {
-			dataRelatorio = alterarFormatoJson(dataRelatorioJson);
-		}
-	});	
 	
+	$(document).on("click", "#gerarRelatorioSintetico", function(event) {
+	
+		var ano = $("#ano").val();
+		
+		$.ajax({
+			async: false,
+			url: "/sisgo/relatorio/sintetico/consultas-mensais/" + ano + "/gerar",
+			type: "post",
+			dataType: "json",
+			error: function(jqXHR, textStatus, errorThrown) {
+				alert("Erro ao gerar relatorio");
+			},
+			success: function(dataRelatorioJson) {
+				dataRelatorio = alterarFormatoJson(dataRelatorioJson);
+				gerarGrafico(ano, dataRelatorio);
+				$(".botaoGerarRelatorioAnalitico").show();
+			}
+		});	
+
+	});
+	
+	$(document).on("click", "#gerarRelatorioAnalitico", function(event) {
+		
+		window.open("/sisgo/relatorio/analitico/consultas-mensais/" + $("#ano").val() + "/gerar","_blank");
+	});	
+});
+
+function gerarGrafico(ano, dataRelatorio) {
+
     $('#graficoRelatorio').highcharts({
         chart: {
             type: 'column'
         },
         title: {
-            text: 'Consultas Mensais em 2014'
+            text: 'Consultas Mensais em ' + ano
         },
         xAxis: {
             type: 'category',
@@ -61,5 +78,5 @@ $(function () {
                 }
             }
         }]
-    });
-});
+    });	
+}

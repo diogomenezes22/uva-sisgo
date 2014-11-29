@@ -8,7 +8,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="#">SISGO</a>
+			<a class="navbar-brand" href="#"><img class="logoSistema" src="${rootPath}/resources/images/logoSisgo.png" />SISGO</a>
 		</div>
 		<div class="collapse navbar-collapse">
 			<ul class="nav navbar-nav">
