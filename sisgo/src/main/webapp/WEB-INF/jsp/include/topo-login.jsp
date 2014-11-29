@@ -7,7 +7,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="#">SISGO - SISTEMA DE GERENCIAMENTO ODONTOLOGICO</a>
+			<a class="navbar-brand" href="#"><img class="logoSistema" src="${rootPath}/resources/images/logoSisgo.png" />SISGO - SISTEMA DE GERENCIAMENTO ODONTOLOGICO</a>
 		</div>
 
 	</div>

@@ -277,7 +277,7 @@
 
          if (options.buttons) {
             calendarNavHtml = "<div class=\"wc-nav\">\
-                    <div class=\"wc-logo\">SISGO</div>\
+                    <div class=\"wc-logo\"><img class=\"logoSistema\" src=\"/sisgo/resources/images/logoSisgo.png\" />SISGO</div>\
             		<div class=\"wc-menu\"><a href=\"/sisgo/principal\">Home</a></div>\
             		<div class=\"wc-menu selected\"><a href=\"/sisgo/agenda/\">Agenda</a></div>\
             		<div class=\"wc-menu\"><a href=\"/sisgo/paciente/listar\">Pacientes</a></div>\

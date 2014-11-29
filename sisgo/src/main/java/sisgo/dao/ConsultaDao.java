@@ -9,6 +9,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.type.StandardBasicTypes;
 
 import sisgo.model.Consulta;
 
@@ -25,6 +26,13 @@ public class ConsultaDao {
 	public Collection<Consulta> listar() {
 		return (Collection<Consulta>) session.createCriteria(Consulta.class).addOrder(Order.asc("id")).list();
 	}
+	
+	@SuppressWarnings("unchecked")
+	public Collection<Consulta> listarPorAno(Integer ano) {
+		return (Collection<Consulta>) session.createCriteria(Consulta.class)
+				.add(Restrictions.sqlRestriction("extract (year from data_inicial) = ? ", ano, StandardBasicTypes.INTEGER))				
+				.list();
+	}	
 
 	@SuppressWarnings("unchecked")
 	public Collection<Consulta> listarConsultasDoDia() {

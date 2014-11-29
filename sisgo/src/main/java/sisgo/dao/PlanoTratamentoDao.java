@@ -20,6 +20,11 @@ public class PlanoTratamentoDao {
 	public PlanoTratamento carregar(Integer id) {
 		return (PlanoTratamento) session.get(PlanoTratamento.class, id);
 	}
+
+	@SuppressWarnings("unchecked")
+	public Collection<PlanoTratamento> listar() {
+		return (Collection<PlanoTratamento>) session.createCriteria(PlanoTratamento.class).list();
+	}	
 	
 	@SuppressWarnings("unchecked")
 	public Collection<PlanoTratamento> listar(Paciente paciente) {

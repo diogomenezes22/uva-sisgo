@@ -2,19 +2,31 @@ $(function () {
 	
 	var dataRelatorio;
 	
-	$.ajax({
-		async: false,
-		url: "/sisgo/relatorio/tratamentos-realizados/gerar",
-		type: "post",
-		dataType: "json",
-		error: function(jqXHR, textStatus, errorThrown) {
-			alert("Erro ao gerar relatorio!");
-		},
-		success: function(dataRelatorioJson) {
-			dataRelatorio = alterarFormatoJson(dataRelatorioJson);
-		}
-	});	
 	
+	$(document).on("click", "#gerarRelatorioSintetico", function(event) {
+		
+		var ano = $("#ano").val();
+		
+		$.ajax({
+			async: false,
+			url: "/sisgo/relatorio/sintetico/tratamentos-realizados/" + ano + "/gerar",
+			type: "post",
+			dataType: "json",
+			error: function(jqXHR, textStatus, errorThrown) {
+				alert("Erro ao gerar relatorio!");
+			},
+			success: function(dataRelatorioJson) {
+				dataRelatorio = alterarFormatoJson(dataRelatorioJson);
+				gerarGrafico(ano, dataRelatorio);
+				$(".botaoGerarRelatorioAnalitico").show();				
+			}
+		});	
+		
+	});
+});
+
+function gerarGrafico(ano, dataRelatorio) {
+
     $('#graficoRelatorio').highcharts({
         chart: {
             plotBackgroundColor: null,
@@ -22,7 +34,7 @@ $(function () {
             plotShadow: false
         },
         title: {
-            text: 'Tratamentos Realizados em 2014'
+            text: 'Tratamentos Realizados em ' + ano
         },
         tooltip: {
             pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -42,8 +54,8 @@ $(function () {
         },
         series: [{
             type: 'pie',
-            name: 'Browser share',
+            name: 'Tratamento',
             data: JSON.parse(dataRelatorio)
         }]
-    });
-});
+    });	
+}
