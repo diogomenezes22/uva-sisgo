@@ -23,6 +23,10 @@ $(function () {
 		});	
 		
 	});
+	
+	$(document).on("click", "#gerarRelatorioAnalitico", function(event) {		
+		window.open("/sisgo/relatorio/analitico/tratamentos-realizados/" + $("#ano").val() + "/gerar","_blank");
+	});		
 });
 
 function gerarGrafico(ano, dataRelatorio) {
