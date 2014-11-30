@@ -57,7 +57,12 @@
 					</tr>
 					<tr>
 						<td colspan="4"><c:if test="${not empty consulta.obs}">--</c:if>${consulta.obs}</td>
-					</tr>					
+					</tr>				
+					<c:if test="${not empty consulta.procedimentosDaConsulta}">
+						<tr>
+							<td colspan="4">Procedimentos: <c:forEach items="${consulta.procedimentosDaConsulta}" var="procedimentoDaConsulta">${procedimentoDaConsulta.procedimento.tratamento.nome}; </c:forEach></td>
+						</tr>					
+					</c:if>	
 				</c:forEach>
 			</c:forEach>
 			<tr class="total">

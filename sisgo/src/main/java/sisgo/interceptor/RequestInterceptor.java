@@ -15,8 +15,6 @@ public class RequestInterceptor {
 	
 	@Inject
 	private Result result;
-	//@Inject
-	//private ApplicationProperties applicationProperties;
 	
     @BeforeCall
     public void before() {

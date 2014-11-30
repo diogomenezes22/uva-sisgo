@@ -49,6 +49,11 @@ $(document).ready(function() {
             buttons: {
                Salvar : function() {
             	   
+            	   if(patientField.val() == "" || patientIdField.val() == "" || dentistField.val() == "" || dentistIdField.val() == "") {
+            		   alert("Preencha todo o formulario da consulta!");
+            		   return;
+            	   }
+            	   
 					$.ajax({
 						async: false,
 						url: "/sisgo/agenda/salvar",
@@ -180,7 +185,6 @@ $(document).ready(function() {
 							},
 							success: function(deleted) {
 								if(deleted == "true") {
-									alert("teste")
 									$calendar.weekCalendar("removeEvent", calEvent.id);								
 								}
 								else {
