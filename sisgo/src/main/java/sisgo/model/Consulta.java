@@ -1,16 +1,22 @@
 package sisgo.model;
 
+import java.util.Collection;
 import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 @Entity
 @Table(name="consulta")
@@ -34,6 +40,9 @@ public class Consulta {
 	@ManyToOne
 	@JoinColumn(name="dentista_id")	
 	private Dentista dentista;	
+	@OneToMany(mappedBy="consulta", fetch=FetchType.EAGER)
+	@Fetch(FetchMode.SELECT)
+	private Collection<ProcedimentoConsulta> procedimentosDaConsulta;	
 	
 	public Integer getId() {
 		return id;
@@ -76,6 +85,13 @@ public class Consulta {
 	}
 	public void setDentista(Dentista dentista) {
 		this.dentista = dentista;
+	}
+	public Collection<ProcedimentoConsulta> getProcedimentosDaConsulta() {
+		return procedimentosDaConsulta;
+	}
+	public void setProcedimentosDaConsulta(
+			Collection<ProcedimentoConsulta> procedimentosDaConsulta) {
+		this.procedimentosDaConsulta = procedimentosDaConsulta;
 	}
 
 }

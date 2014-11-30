@@ -51,7 +51,7 @@
 					<tr>
 						<td><fmt:formatDate value="${plano.dataInicial}" pattern="dd/MM/yyyy" /></td>
 						<td>${plano.paciente.nome}</td>
-						<td>${fn:length(plano.procedimentos) - 1}</td>
+						<td>${fn:length(plano.procedimentos) - 1} <c:if test="${fn:length(plano.procedimentos) > 1}">( <c:forEach items="${plano.procedimentos}" var="procedimento"><c:if test="${procedimento.tratamento.id != tratamento.id}">${procedimento.tratamento.nome}; </c:if></c:forEach>)</c:if></td>						
 					</tr>
 				</c:forEach>
 			</c:forEach>
