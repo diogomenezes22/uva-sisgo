@@ -76,7 +76,7 @@
 					</div>
 				</div>								
 				<div class="form-group">
-					<label for="dataNascimento" class="col-sm-2 control-label">Data</label>
+					<label for="dataNascimento" class="col-sm-2 control-label">Data Nasc.</label>
 					<div class="col-sm-10">
 						<input type="date" id="dataNascimento" name="funcionario.dataNascimento" class="form-control" value="<fmt:formatDate value="${funcionario.dataNascimento}" pattern="yyyy-MM-dd" />" required>
 					</div>

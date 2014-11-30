@@ -71,7 +71,12 @@
 						<c:forEach items="${tratamentos}" var="tratamento" varStatus="t">
 							<c:if test="${t.index != 0 && t.index % 5 == 0}"><br /></c:if>
 							<label class="tratamento">
-								${tratamento.nome} <input type="checkbox" name="planoTratamento.procedimentos[].tratamento.id" class="opcaoTratamento" value="${tratamento.id}" <c:if test="${not empty planoTratamento.mapaProcedimentos[tratamento.id]}">checked</c:if>>
+								${tratamento.nome} <input type="checkbox" name="planoTratamento.procedimentos[${t.index}].tratamento.id" class="opcaoTratamento" value="${tratamento.id}" <c:if test="${not empty planoTratamento.mapaProcedimentos[tratamento.id]}">checked</c:if>>
+								<c:forEach items="${planoTratamento.procedimentos}" var="procedimento">
+									<c:if test="${procedimento.tratamento.id == tratamento.id}">
+										<input type="hidden" name="planoTratamento.procedimentos[${t.index}].id" value="${procedimento.id}">
+									</c:if>
+								</c:forEach>								
 								<input type="hidden" class="valorTratamento" value="${tratamento.valor}">
 							</label>
 						</c:forEach>
