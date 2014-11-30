@@ -39,8 +39,11 @@ public class DentistaController {
 	
 	@Path("/salvar")
 	public void salvar(Dentista dentista) {
-		dentistaDao.salvar(dentista);
-		result.include("mensagem", "Dentista salvo com sucesso!");
+		boolean salvo = dentistaDao.salvar(dentista);
+		if(salvo)
+			result.include("mensagem", "Dentista salvo com sucesso!");
+		else
+			result.include("erro", "Nao e possivel salvar este dentista!");
 		result.redirectTo(this).listar();
 	}
 

@@ -1,5 +1,8 @@
 package sisgo.controller;
 
+import java.util.Collection;
+import java.util.Iterator;
+
 import javax.inject.Inject;
 
 import sisgo.dao.PacienteDao;
@@ -58,8 +61,11 @@ public class PlanoTratamentoController {
 	@Path("/salvar")
 	public void salvar(PlanoTratamento planoTratamento) {
 		prepareSave(planoTratamento);
-		planoTratamentoDao.salvar(planoTratamento);		
-		result.include("mensagem", "Plano de Tratamento salvo com sucesso!");
+		boolean salvo = planoTratamentoDao.salvar(planoTratamento);
+		if(salvo)
+			result.include("mensagem", "Plano de Tratamento salvo com sucesso!");
+		else
+			result.include("erro", "Não é possivel salvar este plano de tratamento!");
 		result.redirectTo(this).listar(planoTratamento.getPaciente());
 	}
 	
@@ -72,14 +78,27 @@ public class PlanoTratamentoController {
 		if(excluido)
 			result.include("mensagem", "Plano de Tratamento excluído com sucesso!");
 		else
-			result.include("erro", "Nao e possivel excluir este plano de tratamento!");
+			result.include("erro", "Não é possivel excluir este plano de tratamento!");
 		result.redirectTo(this).listar(paciente);
 	}	
 	
 	
 	private void prepareSave(PlanoTratamento planoTratamento) {
-		if(planoTratamento.getProcedimentos() != null)
+		if(planoTratamento.getProcedimentos() != null) {			
+			removerTratamentosRetirados(planoTratamento.getProcedimentos());			
 			for (Procedimento procedimento : planoTratamento.getProcedimentos())
 				procedimento.setPlanoTratamento(planoTratamento);
+		}
+	}
+
+	private void removerTratamentosRetirados(Collection<Procedimento> procedimentos) {
+		
+		Iterator<Procedimento> i = procedimentos.iterator();
+		while(i.hasNext()) {
+			Procedimento p = i.next();
+			if(p.getTratamento() == null)
+				i.remove();
+		}
+		
 	}		
 }

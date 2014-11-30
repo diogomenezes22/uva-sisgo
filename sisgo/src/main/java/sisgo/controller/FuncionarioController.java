@@ -39,8 +39,12 @@ public class FuncionarioController {
 	
 	@Path("/salvar")
 	public void salvar(Funcionario funcionario) {
-		funcionarioDao.salvar(funcionario);
-		result.include("mensagem", "Funcionario salvo com sucesso!");
+		
+		boolean salvo = funcionarioDao.salvar(funcionario);
+		if(salvo)
+			result.include("mensagem", "Funcionario salvo com sucesso!");
+		else
+			result.include("erro", "Não é possivel salvar este funcionário!");		
 		result.redirectTo(this).listar();
 	}
 

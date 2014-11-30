@@ -34,16 +34,18 @@ public class PlanoTratamentoDao {
 				.list();
 	}
 	
-	public void salvar(PlanoTratamento planoTratamento) {
+	public boolean salvar(PlanoTratamento planoTratamento) {
 		
 		Transaction tx = session.beginTransaction();
 		try {
 			session.merge(planoTratamento);
 			tx.commit();
+			return true;
 		}
 		catch(Exception e) {
 			e.printStackTrace();
 			tx.rollback();
+			return false;
 		}
 	}
 	

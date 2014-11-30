@@ -24,16 +24,18 @@ public class DentistaDao {
 		return (Collection<Dentista>) session.createCriteria(Dentista.class).addOrder(Order.asc("nome")).list();
 	}
 	
-	public void salvar(Dentista dentista) {
+	public boolean salvar(Dentista dentista) {
 		
 		Transaction tx = session.beginTransaction();
 		try {
 			session.saveOrUpdate(dentista);
 			tx.commit();
+			return true;
 		}
 		catch(Exception e) {
 			e.printStackTrace();
 			tx.rollback();
+			return false;
 		}
 	}
 	

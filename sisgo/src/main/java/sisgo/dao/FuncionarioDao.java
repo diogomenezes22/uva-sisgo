@@ -24,16 +24,18 @@ public class FuncionarioDao {
 		return (Collection<Funcionario>) session.createCriteria(Funcionario.class).addOrder(Order.asc("nome")).list();
 	}
 	
-	public void salvar(Funcionario funcionario) {
+	public boolean salvar(Funcionario funcionario) {
 		
 		Transaction tx = session.beginTransaction();
 		try {
 			session.saveOrUpdate(funcionario);
 			tx.commit();
+			return true;
 		}
 		catch(Exception e) {
 			e.printStackTrace();
 			tx.rollback();
+			return false;
 		}
 	}
 	
